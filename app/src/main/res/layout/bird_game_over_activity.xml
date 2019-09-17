@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/birdgame_gameover"
+    android:orientation="vertical"
+    tools:context=".BirdGameMainActivity">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/Image_Bird1"
+            android:layout_width="92dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="250dp"
+            app:srcCompat="@drawable/birdgame_bird1"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/Image_Bird2"
+            android:layout_width="92dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="250dp"
+            app:srcCompat="@drawable/birdgame_bird2"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Score_BirdGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Score : "
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/high_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="High Score : 300"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/Bird_ButtonPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:id="@+id/try_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:background="@color/color_Button"
+            android:text="Try Again"
+            android:textColor="@color/Text_Color"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/quit_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/color_Button"
+            android:text="Quit"
+            android:textColor="@color/Text_Color"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

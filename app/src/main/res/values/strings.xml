@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">WaitLess</string>
+    <!-- Strings related to login -->
+    <string name="action_sign_in_short">Register</string>
+    <string name="email">Email</string>
+    <string name="userid">User ID</string>
+    <string name="minimum_password">Password Too Short, Enter Minimum 6 characters!</string>
+    <string name="auth_failed">Authentication Failed, Check Your Email and Password or Register</string>
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="send_password_reset_email">Send Password Reset Email</string>
+    <string name="remove_user">Remove User</string>
+    <string name="new_pass">New Password</string>
+    <string name="current_pass">Current Password</string>
+    <string name="current_email">Current Email</string>
+    <string name="title_activity_profile">Firebase</string>
+    <string name="title_activity_login">Sign In</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Full Name</string>
+    <string name="hint_number">Mobile Number</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_admin_login">Admin Login</string>
+    <string name="btn_link_to_register">Register Here</string>
+    <string name="btn_link_to_login">Login Here</string>
+    <string name="title_activity_reset_password">ResetPasswordActivity</string>
+    <string name="btn_forgot_password">Forgot Password</string>
+    <string name="btn_reset_password">Reset Password</string>
+    <string name="btn_back"><![CDATA[<< Back]]></string>
+    <string name="hint_new_email">New Email</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_send">Send</string>
+    <string name="btn_remove">Remove</string>
+    <string name="btn_sign_out">Sign Out</string>
+    <string name="lbl_forgot_password">Forgot Password?</string>
+    <string name="forgot_password_msg">We Just Need Your Registered Email ID To Send You The Password Reset Instructions.</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation Header</string>
+    <string name="action_settings">Settings</string>
+    <string name="profile">My Profile</string>
+    <string name="miniGames">Mini Games</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="tools">Tools</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="my_header_title">My Header Title</string>
+    <string name="home">Home</string>
+    <string name="play_now">Play</string>
+    <string name="home_popular">What\'s Popular?</string>
+    <string name="admin_home">Admin Homepage</string>
+    <string name="order_button">Order Now</string>
+    <string name="temporary_description">The cards are drawn to the screen with a default elevation, which causes the system to draw.</string>
+    <string name="book_table">Book Table</string>
+    <string name="my_res">My Reservations</string>
+    <string name="res_summary">Reservations Summary</string>
+    <string name="order">Orders</string>
+
+    <string name="game_title_1">Chidiya Ud</string>
+    <string name="game_title_2">Awkbird</string>
+    <string name="game_title_3">Birdweiser</string>
+    <string name="game_title_4">Game 4</string>
+
+    <string name="title_1">Krutant</string>
+    <string name="title_2">Hetav</string>
+    <string name="title_3">Ritik</string>
+    <string name="title_4">Ishita</string>
+
+
+    <string name="menu">Menu</string>
+
+    <string name="heading">Flappy Bird</string>
+    <string name="button_start">Start</string>
+
+    <string name="text_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
+    <string name="assistance">Assistance</string>
+
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="details_play">Details | Play</string>
+</resources>

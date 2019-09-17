@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.hetavdesai.pl2project">
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <meta-data
+        android:name="com.google.android.gms.vision.DEPENDENCIES"
+        android:value="barcode" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/waitless_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".UserProfileActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.UserProfileActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".InvoiceActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.InvoiceActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/waitless_logoai" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <activity android:name=".AdminAssistanceActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.AdminAssistanceActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ScannedBarcodeActivity" />
+        <activity android:name=".MyOrdersActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.MyOrdersActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdminOrderSummaryActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.AdminOrderSummaryActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CartActivity" />
+        <activity android:name=".MyReservationsActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.MyReservationsActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdminReservationSummaryActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.AdminReservationSummaryActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ReservationActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.ReservationActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdminHomeActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.AdminHomeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdminLoginActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.AdminLoginActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FoodItemActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.FoodItemActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.MainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ResetPasswordActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.activity_reset_password" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".HomeActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.HomeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MiniGamesActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.MiniGamesActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FullMenuActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.FullMenuActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainCatchBallActivity">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.MainCatchBallActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainFlappyActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.MainFlappyActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".GameOverFlappyActivity"
+            android:excludeFromRecents="true"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.GameOverFlappyActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BirdGameOverActivity"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.BirdGameOverActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BirdGameMainActivity"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="com.example.hetavdesai.pl2project.BirdGameMainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

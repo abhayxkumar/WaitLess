@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/menu_home"
+            android:title="@string/home" />
+
+        <item
+            android:id="@+id/nav_res_summary"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="@string/res_summary" />
+
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="@string/order" />
+
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/menu_profile"
+            android:title="@string/profile" />
+
+        <item
+            android:id="@+id/nav_assist"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="@string/assistance" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="@string/sign_out" />
+
+    </group>
+
+</menu>

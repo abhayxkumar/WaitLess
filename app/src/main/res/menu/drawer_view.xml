@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/menu_home"
+            android:title="@string/home" />
+
+        <item
+            android:id="@+id/nav_full_menu"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="@string/menu" />
+
+        <item
+            android:id="@+id/nav_game"
+            android:icon="@drawable/menu_game"
+            android:title="@string/miniGames" />
+
+        <item
+            android:id="@+id/nav_book_table"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="@string/book_table" />
+
+        <item
+            android:id="@+id/nav_my_res"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="@string/my_res" />
+
+        <item
+            android:id="@+id/nav_my_order"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="My Orders" />
+
+        <item
+            android:id="@+id/nav_invoice"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="Invoice" />
+
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="@string/sign_out" />
+
+    </group>
+
+</menu>

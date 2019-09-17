@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "679831952688",
+    "firebase_url": "https://android-project-fb.firebaseio.com",
+    "project_id": "android-project-fb",
+    "storage_bucket": "android-project-fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679831952688:android:0fe1d398cd402bb0",
+        "android_client_info": {
+          "package_name": "com.example.hetavdesai.pl2project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679831952688-10d8l5l2r8qrgnaviemc81ce10733bpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoHnhz6r6oGxx_vWlsnkNcsNXSfP-cl18"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

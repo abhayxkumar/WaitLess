@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/background_flappy"
+    android:orientation="vertical"
+    android:padding="5dp"
+    tools:context=".MainFlappyActivity">
+
+    <TextView
+        android:id="@+id/scoreLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/flappy_font"
+        android:paddingVertical="14dp"
+        android:text="Score : 0"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/flappy_font"
+        android:padding="5dp"
+        android:text="@string/heading"
+        android:textSize="45sp" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/flappy_bird" />
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="onClick"
+        android:text="@string/button_start"
+        android:textSize="25sp" />
+
+
+</LinearLayout>

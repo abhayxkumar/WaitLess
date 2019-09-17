@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_flappy"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".GameOverFlappyActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/flappy_font"
+        android:text="GAMEOVER"
+        android:textSize="70sp" />
+
+    <TextView
+        android:id="@+id/scoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40sp"
+        android:fontFamily="@font/flappy_font"
+        android:text="150"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/highScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/flappy_font"
+        android:padding="5dp"
+        android:text="HighScore : 300"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/flappy_try_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/holo_red_light"
+        android:text="TRY AGAIN"
+        android:textColor="@android:color/background_light" />
+
+    <Button
+        android:id="@+id/flappy_quit_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Quit"
+        android:textColor="@android:color/background_light" />
+
+</LinearLayout>
