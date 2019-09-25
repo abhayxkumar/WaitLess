@@ -50,6 +50,7 @@ dependencies {
     implementation 'in.shadowfax:proswipebutton:1.1'
     implementation 'com.google.firebase:firebase-perf:16.2.4'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.vipulasri:ticketview:1.0.7'
 }
 
 apply plugin: 'com.google.gms.google-services'

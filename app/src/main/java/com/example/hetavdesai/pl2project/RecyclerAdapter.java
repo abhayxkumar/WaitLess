@@ -1,7 +1,9 @@
 package com.example.hetavdesai.pl2project;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.transition.TransitionManager;
@@ -83,18 +85,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                             if (!dataSnapshot.exists()) {
-                                holder.addToCart.setImageResource(android.R.drawable.ic_input_add);
+                                holder.addToCartText.setText("ADD");
+                                holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                                holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
                                 holder.addToCart.setEnabled(true);
                                 flag[0] = 1;
                             } else {
-                                holder.addToCart.setImageResource(android.R.drawable.ic_menu_add);
+                                holder.addToCartText.setText("ADDED");
+                                holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+                                holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.white));
                                 holder.addToCart.setEnabled(false);
                                 flag[0] = 1;
                             }
                         }
 
                         if (flag[0] == 0) {
-                            holder.addToCart.setImageResource(android.R.drawable.ic_input_add);
+                            holder.addToCartText.setText("ADD");
+                            holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                            holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
                             holder.addToCart.setEnabled(true);
                         }
 
@@ -121,22 +129,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         holder.description.setText(mylist.getDescription());
         holder.calories.setText(mylist.getCalories());
 
-        holder.dropView.setVisibility(View.GONE);
+        //holder.dropView.setVisibility(View.GONE);
 
-        holder.foodItemCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (flagTransition[0] == 0) {
-                    TransitionManager.beginDelayedTransition(holder.foodItemCard);
-                    holder.dropView.setVisibility(View.VISIBLE);
-                    flagTransition[0] = 1;
-                } else {
-                    holder.dropView.setVisibility(View.GONE);
-                    flagTransition[0] = 0;
-                }
-
-            }
-        });
+//        holder.foodItemCard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (flagTransition[0] == 0) {
+//                    TransitionManager.beginDelayedTransition(holder.foodItemCard);
+//                    holder.dropView.setVisibility(View.VISIBLE);
+//                    flagTransition[0] = 1;
+//                } else {
+//                    holder.dropView.setVisibility(View.GONE);
+//                    flagTransition[0] = 0;
+//                }
+//
+//            }
+//        });
 
 
         holder.addToCart.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +186,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                                 CartClass cartClass = new CartClass(holder.viewname, holder.priceAsInt, 1, holder.priceAsInt, tableno, key, acct.getDisplayName(),0);
                                 swipeFlag = false;
                                 databaseReference2.child("Cart").child(String.valueOf(tableno)).child(key).setValue(cartClass);
-                                holder.addToCart.setImageResource(android.R.drawable.ic_menu_add);
+                                holder.addToCartText.setText("ADDED");
+                                holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+                                holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.white));
                                 holder.addToCart.setEnabled(false);
                             }
                             flag[0] = 1;
@@ -189,7 +199,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                             CartClass cartClass = new CartClass(holder.viewname, holder.priceAsInt, 1, holder.priceAsInt, tableno, key, acct.getDisplayName(),0);
                             swipeFlag = false;
                             databaseReference2.child("Cart").child(String.valueOf(tableno)).child(key).setValue(cartClass);
-                            holder.addToCart.setImageResource(android.R.drawable.ic_menu_add);
+                            holder.addToCartText.setText("ADDED");
+                            holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+                            holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.white));
                             holder.addToCart.setEnabled(false);
                         }
                     }
@@ -222,9 +234,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     }
 
     class MyHoder extends RecyclerView.ViewHolder {
-        TextView name, description, viewPrice, calories;
-        ImageButton addToCart;
-        LinearLayout dropView;
+        TextView name, description, viewPrice, calories, addToCartText, viewQuantity;
+        CardView addToCart;
         CardView foodItemCard;
         int priceAsInt;
         String viewname;
@@ -236,10 +247,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             description = (TextView) itemView.findViewById(R.id.contentTextView);
             viewPrice = itemView.findViewById(R.id.priceTextView);
             addToCart = itemView.findViewById(R.id.add_to_cart);
-            dropView = itemView.findViewById(R.id.appearLater);
+            addToCartText = itemView.findViewById(R.id.add_to_cart_text);
+            //dropView = itemView.findViewById(R.id.appearLater);
             foodItemCard = (CardView) itemView.findViewById(R.id.cardView);
             calories = itemView.findViewById(R.id.caloriesTextView);
-
         }
     }
 

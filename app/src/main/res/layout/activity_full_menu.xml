@@ -4,7 +4,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
     <FrameLayout
@@ -19,7 +20,8 @@
             android:layout_margin="16dp"
             android:accessibilityHeading="true"
             android:background="@null"
-            app:srcCompat="@drawable/nav_menu" />
+            app:srcCompat="@drawable/nav_menu"
+            android:backgroundTint="@color/white"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +31,10 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:text="Full Menu"
-            android:textSize="25dp" />
+            android:fontFamily="@font/montesrat"
+            android:textSize="25dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:letterSpacing="0.1"/>
 
 
         <RelativeLayout
@@ -76,7 +81,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycleFullMenu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:paddingTop="20dp"/>
 
         </LinearLayout>
 
@@ -89,7 +95,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_view">
+        app:menu="@menu/drawer_view"
+        app:itemTextColor="@color/colorPrimaryDark">
 
     </android.support.design.widget.NavigationView>
 

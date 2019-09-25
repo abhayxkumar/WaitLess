@@ -52,39 +52,45 @@ public class FMRecyclerAdapter extends RecyclerView.Adapter<FMRecyclerAdapter.My
         mylist = list.get(position);
 
         final Intent[] intent = new Intent[1];
-        holder.catName.setText(mylist.getCatName());
+//        holder.catName.setText(mylist.getCatName());
         holder.switchCatID = mylist.getCatID();
 
         holder.foodItemHeaderInHolder = mylist.getCatName();
 
         switch(holder.switchCatID) {
             case "C01":
-                holder.catImage.setImageResource(R.drawable.pizza);
+                holder.catImage.setImageResource(R.drawable.cat_pizza);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.pizza);
                 break;
 
             case "C02":
-                holder.catImage.setImageResource(R.drawable.dessert);
+                holder.catImage.setImageResource(R.drawable.cat_dessert);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.dessert);
                 break;
 
             case "C03":
-                holder.catImage.setImageResource(R.drawable.burger);
+                holder.catImage.setImageResource(R.drawable.cat_burger);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.burger);
                 break;
 
             case "C04":
-                holder.catImage.setImageResource(R.drawable.soup);
+                holder.catImage.setImageResource(R.drawable.cat_soup);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.soup);
                 break;
 
             case "C05":
-                holder.catImage.setImageResource(R.drawable.biryani);
+                holder.catImage.setImageResource(R.drawable.cat_biryani);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.biryani);
                 break;
 
             case "C06":
-                holder.catImage.setImageResource(R.drawable.pasta);
+                holder.catImage.setImageResource(R.drawable.cat_pasta);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.pasta);
                 break;
         }
 
 
-        holder.openCategory.setOnClickListener(new View.OnClickListener() {
+        holder.fullMenuCardItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (holder.switchCatID) {
@@ -155,8 +161,7 @@ public class FMRecyclerAdapter extends RecyclerView.Adapter<FMRecyclerAdapter.My
 
         public MyHoder(View itemView) {
             super(itemView);
-            catName = (TextView) itemView.findViewById(R.id.cat_name_view);
-            openCategory = itemView.findViewById(R.id.cat_view_btn);
+            //catName = (TextView) itemView.findViewById(R.id.cat_name_view);
             fullMenuCardItem = itemView.findViewById(R.id.full_menu_card);
             catImage = itemView.findViewById(R.id.cat_image_view);
             catImage.setScaleType(ImageView.ScaleType.CENTER_CROP);

@@ -241,10 +241,12 @@ public class FullMenuActivity extends AppCompatActivity {
 
             public void onActivityOpen() {
                 FMRecyclerAdapter fmRecyclerAdapter = new FMRecyclerAdapter(list, FullMenuActivity.this);
-                RecyclerView.LayoutManager fmRecycleVariable = new GridLayoutManager(FullMenuActivity.this, 2);
+                RecyclerView.LayoutManager fmRecycleVariable = new GridLayoutManager(FullMenuActivity.this, 1);
                 recycleFullMenu.setLayoutManager(fmRecycleVariable);
                 recycleFullMenu.setItemAnimator(new DefaultItemAnimator());
                 recycleFullMenu.setAdapter(fmRecyclerAdapter);
+                //int spacingInPixels = getResources().getDimensionPixelSize(5);
+                recycleFullMenu.addItemDecoration(new SpacesItemDecoration(0));
             }
 
             @Override

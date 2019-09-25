@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="60dp"
-            android:fontFamily="@font/mamma_gamma"
+            android:fontFamily="@font/montesrat"
             android:text="Wait"
             android:textColor="@color/white" />
 
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:textSize="60dp"
         android:textStyle="bold"
-        android:fontFamily="@font/mamma_gamma"
+        android:fontFamily="@font/montesrat"
         android:text="Less"
         android:textColor="@color/white" />
 </LinearLayout>

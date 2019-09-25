@@ -2,27 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="192dp"
+    android:layout_height="120dp"
     android:background="@drawable/nav_bg"
-    android:gravity="bottom"
-    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:padding="16dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:layout_marginTop="20dp">
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/nav_image"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:paddingTop="16dp"/>
+        android:layout_gravity="center_vertical"
+        android:paddingTop="5dp"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:paddingTop="5dp">
 
     <TextView
         android:id="@+id/nav_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/my_header_title"
-        android:textSize="16sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textSize="20sp"
+        android:fontFamily="@font/montesrat"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/nav_email"
@@ -30,6 +41,10 @@
         android:layout_height="wrap_content"
         android:text="@string/my_header_title"
         android:textSize="12sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:fontFamily="@font/montesrat"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    </LinearLayout>
 
 </LinearLayout>

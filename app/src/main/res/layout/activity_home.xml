@@ -4,13 +4,17 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
+
+
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <ImageButton
             android:id="@+id/navbtn"
@@ -29,13 +33,17 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:text="Welcome, Home"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:fontFamily="@font/montesrat"
+            android:textColor="@color/colorPrimaryDark"
+            android:letterSpacing="0.1"/>
 
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right">
+            android:layout_gravity="right"
+            android:gravity="right">
 
             <RelativeLayout
                 android:id="@+id/relative_layout"
@@ -83,12 +91,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/home_popular"
                     android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/montesrat"/>
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -101,38 +108,60 @@
                         android:orientation="horizontal">
 
                         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="200dp"
+                            android:layout_width="240dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="30dp"
                             android:layout_marginRight="20dp"
-                            android:layout_marginBottom="20dp"
-                            card_view:cardCornerRadius="6dp">
+                            android:layout_marginBottom="60dp"
+                            card_view:cardCornerRadius="10dp"
+                            card_view:cardElevation="30dp"
+                            card_view:cardBackgroundColor="@color/white">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="85dp"
-                                    android:scaleType="center"
-                                    app:srcCompat="@drawable/bg_photo" />
+                                <android.support.v7.widget.CardView
+                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    card_view:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="180dp"
+                                        android:scaleType="centerCrop"
+                                        android:adjustViewBounds="true"
+                                        app:srcCompat="@drawable/pizza"/>
+
+                                </android.support.v7.widget.CardView>
+
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginTop="10dp"
-                                    android:text="@string/app_name" />
+                                    android:text="Tandoori Paneer Pizza"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textStyle="bold"
+                                    android:fontFamily="@font/montesrat"
+                                    android:letterSpacing="0.05"
+                                    android:textAllCaps="true"/>
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginTop="10dp"
-                                    android:text="@string/temporary_description" />
+                                    android:text="@string/temporary_description"
+                                    android:fontFamily="@font/montesrat" />
 
                                 <Button
                                     android:layout_width="wrap_content"
@@ -141,38 +170,57 @@
                                     android:layout_margin="10dp"
                                     android:background="@null"
                                     android:text="@string/order_button"
-                                    android:textColor="@color/colorAccent" />
+                                    android:textColor="@color/colorPrimary" />
 
                             </LinearLayout>
 
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="200dp"
+                            android:layout_width="240dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="30dp"
                             android:layout_marginRight="20dp"
-                            android:layout_marginBottom="20dp"
-                            card_view:cardCornerRadius="6dp">
+                            android:layout_marginBottom="50dp"
+                            card_view:cardCornerRadius="10dp"
+                            card_view:cardElevation="30dp"
+                            android:padding="50dp"
+                            card_view:cardBackgroundColor="@color/white">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="85dp"
-                                    android:scaleType="center"
-                                    app:srcCompat="@drawable/bg_photo" />
+                                <android.support.v7.widget.CardView
+                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    card_view:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="180dp"
+                                        android:scaleType="centerCrop"
+                                        android:adjustViewBounds="true"
+                                        app:srcCompat="@drawable/burger"/>
+
+                                </android.support.v7.widget.CardView>
+
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginTop="10dp"
-                                    android:text="@string/app_name" />
+                                    android:text="Spicy Paneer Burger"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textStyle="bold"
+                                    android:letterSpacing="0.05"
+                                    android:textAllCaps="true"/>
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -188,38 +236,57 @@
                                     android:layout_margin="10dp"
                                     android:background="@null"
                                     android:text="@string/order_button"
-                                    android:textColor="@color/colorAccent" />
+                                    android:textColor="@color/colorPrimary" />
 
                             </LinearLayout>
 
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="200dp"
+                            android:layout_width="240dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="30dp"
                             android:layout_marginRight="20dp"
-                            android:layout_marginBottom="20dp"
-                            card_view:cardCornerRadius="6dp">
+                            android:layout_marginBottom="50dp"
+                            card_view:cardCornerRadius="10dp"
+                            card_view:cardElevation="30dp"
+                            android:padding="50dp"
+                            card_view:cardBackgroundColor="@color/white">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="85dp"
-                                    android:scaleType="center"
-                                    app:srcCompat="@drawable/bg_photo" />
+                                <android.support.v7.widget.CardView
+                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    card_view:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="180dp"
+                                        android:scaleType="centerCrop"
+                                        android:adjustViewBounds="true"
+                                        app:srcCompat="@drawable/dessert"/>
+
+                                </android.support.v7.widget.CardView>
+
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginTop="10dp"
-                                    android:text="@string/app_name" />
+                                    android:text="Choco Oreo Sundae"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textStyle="bold"
+                                    android:letterSpacing="0.05"
+                                    android:textAllCaps="true"/>
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -235,38 +302,57 @@
                                     android:layout_margin="10dp"
                                     android:background="@null"
                                     android:text="@string/order_button"
-                                    android:textColor="@color/colorAccent" />
+                                    android:textColor="@color/colorPrimary"/>
 
                             </LinearLayout>
 
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="200dp"
+                            android:layout_width="240dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="30dp"
                             android:layout_marginRight="20dp"
-                            android:layout_marginBottom="20dp"
-                            card_view:cardCornerRadius="6dp">
+                            android:layout_marginBottom="50dp"
+                            card_view:cardCornerRadius="10dp"
+                            card_view:cardElevation="30dp"
+                            android:padding="50dp"
+                            card_view:cardBackgroundColor="@color/white">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="85dp"
-                                    android:scaleType="center"
-                                    app:srcCompat="@drawable/bg_photo" />
+                                <android.support.v7.widget.CardView
+                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    card_view:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="180dp"
+                                        android:scaleType="centerCrop"
+                                        android:adjustViewBounds="true"
+                                        app:srcCompat="@drawable/dessert2"/>
+
+                                </android.support.v7.widget.CardView>
+
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginTop="10dp"
-                                    android:text="@string/app_name" />
+                                    android:text="Assorted Ice Creams"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textStyle="bold"
+                                    android:letterSpacing="0.05"
+                                    android:textAllCaps="true"/>
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -282,11 +368,12 @@
                                     android:layout_margin="10dp"
                                     android:background="@null"
                                     android:text="@string/order_button"
-                                    android:textColor="@color/colorAccent" />
+                                    android:textColor="@color/colorPrimary" />
 
                             </LinearLayout>
 
                         </android.support.v7.widget.CardView>
+
 
                     </LinearLayout>
 
@@ -317,7 +404,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_view">
+        app:menu="@menu/drawer_view"
+        app:itemTextAppearance="@font/montesrat">
 
     </android.support.design.widget.NavigationView>
 
