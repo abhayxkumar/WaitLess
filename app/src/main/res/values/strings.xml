@@ -79,5 +79,5 @@
 
 
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
-    <string name="details_play">Details | Play</string>
+    <string name="highscore_name">Ritik</string>
 </resources>

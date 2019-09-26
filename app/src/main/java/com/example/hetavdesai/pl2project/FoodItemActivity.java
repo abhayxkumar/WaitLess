@@ -34,6 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,8 @@ public class FoodItemActivity extends AppCompatActivity {
     public FirebaseAuth.AuthStateListener authStateListener;
     public int switchVariable = 0;
     FMRecyclerAdapter fmRecyclerAdapter;
-    TextView nav_username;
+    TextView nav_username,nav_email;
+    CircularImageView nav_image;
     FirebaseDatabase database;
     DatabaseReference myRef;
     List<FoodClass> list;
@@ -175,10 +178,15 @@ public class FoodItemActivity extends AppCompatActivity {
                     }
                 });
 
-//        View headerView = navigationView.getHeaderView(0);
-//        nav_username = (TextView) headerView.findViewById(R.id.nav_username);
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-//        nav_username.setText(acct.getDisplayName());
+        View headerView = navigationView.getHeaderView(0);
+        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
+        nav_image = (CircularImageView) headerView.findViewById(R.id.nav_image);
+        nav_email = (TextView)headerView.findViewById(R.id.nav_email);
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        nav_username.setText(acct.getDisplayName());
+        nav_email.setText(acct.getEmail());
+        Picasso.get().load(acct.getPhotoUrl()).into(nav_image);
 
 
         mDrawerLayout.addDrawerListener(
@@ -256,14 +264,12 @@ public class FoodItemActivity extends AppCompatActivity {
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(FoodItemActivity.this);
         String email = acct.getEmail();
         Query query = databaseReference.child("users").orderByChild("email").equalTo(email);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-
                     UserClass value = dataSnapshot1.getValue(UserClass.class);
                     tableno = value.getTableno();
                 }

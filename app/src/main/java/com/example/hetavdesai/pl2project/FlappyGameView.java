@@ -1,5 +1,6 @@
 package com.example.hetavdesai.pl2project;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -79,13 +80,9 @@ public class FlappyGameView extends SurfaceView implements SurfaceHolder.Callbac
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-
         makeLevel();
-
-
         thread.setRunning(true);
         thread.start();
-
     }
 
     private void makeLevel() {
@@ -121,7 +118,6 @@ public class FlappyGameView extends SurfaceView implements SurfaceHolder.Callbac
             try {
                 thread.setRunning(false);
                 thread.join();
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -167,12 +163,14 @@ public class FlappyGameView extends SurfaceView implements SurfaceHolder.Callbac
                 soundplayer.setDeathsound();
                 resetLevel();
                 intent.putExtra("SCORE", (score / 22));
+                ((Activity)getContext()).finish();
                 ((MainFlappyActivity) getContext()).startActivity(intent);
 
             } else if (characterFlappySprite.y + 160 > (screenHeight / 2) + (gapHeight / 2) + pipes.get(i).yY && characterFlappySprite.x + 200 > pipes.get(i).xX && characterFlappySprite.x < pipes.get(i).xX + 250) {
                 soundplayer.setDeathsound();
                 resetLevel();
                 intent.putExtra("SCORE", (score / 22));
+                ((Activity)getContext()).finish();
                 ((MainFlappyActivity) getContext()).startActivity(intent);
 
             }
@@ -182,7 +180,7 @@ public class FlappyGameView extends SurfaceView implements SurfaceHolder.Callbac
 //                    && characterFlappySprite.x < pipes.get(i).xX + 275) {
                 //      soundplayer.setPointsound();
                 score++;
-                scoretext.setText((score / 22) + "");
+                scoretext.setText((score/22) + "");
             }
 
             //Detect if the pipe has gone off the left of the screen and regenerate further ahead
@@ -199,6 +197,7 @@ public class FlappyGameView extends SurfaceView implements SurfaceHolder.Callbac
             soundplayer.setDeathsound();
             resetLevel();
             intent.putExtra("SCORE", (score / 22));
+            ((Activity)getContext()).finish();
             (getContext()).startActivity(intent);
         }
     }

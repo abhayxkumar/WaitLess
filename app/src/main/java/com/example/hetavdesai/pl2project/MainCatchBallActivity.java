@@ -8,17 +8,28 @@ import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Time;
 import java.util.Timer;
@@ -27,31 +38,39 @@ import java.util.concurrent.TimeUnit;
 
 public class MainCatchBallActivity extends AppCompatActivity {
 
-    SoundCatchBallPlayer soundCatchBallPlayer;
-
     // Frame
     private FrameLayout gameFrame;
     private int frameHeight, frameWidth, initialFrameWidth;
     private LinearLayout startLayout;
 
     // Image
-    private ImageView box, black, orange, pink;
+    private ImageView box, black, orange, pink, boxdisplay;
     private Drawable imageBoxRight, imageBoxLeft;
 
     // Size
     private int boxSize;
+    private int count=0;
+
     //Level
     private int level=1;
+
 
     // Position
     private float boxX, boxY;
     private float blackX[]=new float[100];
     private float blackY[]=new float[100];
+    private float blackCenterX[]=new float[100];
+    private float blackCenterY[]=new float[100];
     private float orangeX, orangeY;
     private float pinkX, pinkY;
 
+    //Button
+    private Button pause_btn;
+    private Button quit_game;
+
     // Score
     private TextView scoreLabel, highScoreLabel;
+    public TextView gHighScoreLabel;
     private int score, highScore, timeCount;
     private SharedPreferences settings;
 
@@ -59,18 +78,31 @@ public class MainCatchBallActivity extends AppCompatActivity {
     private Timer timer;
     private Handler handler = new Handler();
     private SoundCatchBallPlayer soundPlayer;
-    private TimerTask timerTask;
 
     // Status
     private boolean start_flg = false;
     private boolean action_flg = false;
     private boolean pink_flg = false;
+    private boolean pause_flg = false;
+    private boolean pausebtn_flg = false;
 
+    private static final String TAG = "main";
+    FirebaseDatabase mFirebaseDatabase;
+    DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catch_ball_main);
+
+//        Timer t = new Timer();
+//        t.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                level++;
+////                Toast.makeText(MainCatchBallActivity.this,"hello",Toast.LENGTH_SHORT).show();
+//            }
+//        },0,30000);
 
         soundPlayer = new SoundCatchBallPlayer(this);
 
@@ -82,7 +114,13 @@ public class MainCatchBallActivity extends AppCompatActivity {
         pink = findViewById(R.id.pink);
         scoreLabel = findViewById(R.id.scoreLabel);
         highScoreLabel = findViewById(R.id.highScoreLabel);
+        gHighScoreLabel = findViewById(R.id.gHighScoreLabel3);
+        boxdisplay = findViewById(R.id.box_display);
+        pause_btn = findViewById(R.id.pause_btn);
+        quit_game = findViewById(R.id.quit_game);
 
+
+        pause_btn.setVisibility(View.INVISIBLE);
         imageBoxLeft = getResources().getDrawable(R.drawable.box_left);
         imageBoxRight = getResources().getDrawable(R.drawable.box_right);
 
@@ -90,6 +128,25 @@ public class MainCatchBallActivity extends AppCompatActivity {
         settings = getSharedPreferences("HIGH_SCORE_CATCHBALL", Context.MODE_PRIVATE);
         highScore = settings.getInt("HIGH_SCORE", 0);
         highScoreLabel.setText("High Score : " + highScore);
+
+        pause_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pausebtn_flg=true;
+                setPause_btn();
+            }
+        });
+
+        quit_game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainCatchBallActivity.this,MiniGamesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        checkHighScore();
+
     }
 
 
@@ -116,7 +173,7 @@ public class MainCatchBallActivity extends AppCompatActivity {
         timeCount += 20;
 
         // Orange
-        orangeY += 12;
+        orangeY += 20;
 
         float orangeCenterX = orangeX + orange.getWidth() / 2;
         float orangeCenterY = orangeY + orange.getHeight() / 2;
@@ -142,7 +199,7 @@ public class MainCatchBallActivity extends AppCompatActivity {
         }
 
         if (pink_flg) {
-            pinkY += 20;
+            pinkY += 30;
 
             float pinkCenterX = pinkX + pink.getWidth() / 2;
             float pinkCenterY = pinkY + pink.getWidth() / 2;
@@ -165,16 +222,16 @@ public class MainCatchBallActivity extends AppCompatActivity {
 
         // Black
         for(int i=0;i<level;i++) {
-            blackY[i] += 18;
+            blackY[i] += 30;
 
-            float blackCenterX = blackX[i] + black.getWidth() / 2;
-            float blackCenterY = blackY[i] + black.getHeight() / 2;
+            blackCenterX[i] = blackX[i] + black.getWidth() / 2;
+            blackCenterY[i] = blackY[i] + black.getHeight() / 2;
 
-            if (hitCheck(blackCenterX, blackCenterY)) {
+            if (hitCheck(blackCenterX[i], blackCenterY[i])) {
                 blackY[i] = frameHeight + 100;
 
                 // Change FrameWidth
-                frameWidth = frameWidth * 80 / 100;
+                frameWidth = frameWidth * 70 / 100;
                 changeFrameWidth(frameWidth);
                 soundPlayer.playHitBlackSound();
                 if (frameWidth <= boxSize) {
@@ -195,11 +252,11 @@ public class MainCatchBallActivity extends AppCompatActivity {
         // Move Box
         if (action_flg) {
             // Touching
-            boxX += 14;
+            boxX += 20;
             box.setImageDrawable(imageBoxRight);
         } else {
             // Releasing
-            boxX -= 14;
+            boxX -= 20;
             box.setImageDrawable(imageBoxLeft);
         }
 
@@ -214,7 +271,6 @@ public class MainCatchBallActivity extends AppCompatActivity {
         }
 
         box.setX(boxX);
-
         scoreLabel.setText("Score : " + score);
 
     }
@@ -238,7 +294,7 @@ public class MainCatchBallActivity extends AppCompatActivity {
         timer.cancel();
         timer = null;
         start_flg = false;
-
+        pause_btn.setVisibility(View.INVISIBLE);
         // Before showing startLayout, sleep 1 second.
         try {
             TimeUnit.SECONDS.sleep(1);
@@ -248,6 +304,7 @@ public class MainCatchBallActivity extends AppCompatActivity {
 
         changeFrameWidth(initialFrameWidth);
 
+        boxdisplay.setVisibility(View.INVISIBLE);
         startLayout.setVisibility(View.VISIBLE);
         box.setVisibility(View.INVISIBLE);
         black.setVisibility(View.INVISIBLE);
@@ -257,12 +314,18 @@ public class MainCatchBallActivity extends AppCompatActivity {
         // Update High Score
         if (score > highScore) {
             highScore = score;
-            highScoreLabel.setText("High Score : " + highScore);
+            highScoreLabel.setText("Your High Score : " + highScore);
 
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("HIGH_SCORE", highScore);
             editor.commit();
         }
+        else
+        {
+            highScoreLabel.setText("Your High Score : " + highScore);
+        }
+
+        checkHighScore();
     }
 
     @Override
@@ -282,6 +345,7 @@ public class MainCatchBallActivity extends AppCompatActivity {
     public void startGame(View view) {
         start_flg = true;
         startLayout.setVisibility(View.INVISIBLE);
+        pause_btn.setVisibility(View.VISIBLE);
 
         if (frameHeight == 0) {
             frameHeight = gameFrame.getHeight();
@@ -329,37 +393,43 @@ public class MainCatchBallActivity extends AppCompatActivity {
                 }
             }
         }, 0, 20);
-
-        //ADD TIMER FOR LEVEL UP
-
-//        Timer timer2 =  new Timer();
-//        timer2.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                handler.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        level++;
-//                        Toast.makeText(MainCatchBallActivity.this, "LEVEL " + level, Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        }, 5000, 30000); //
-
     }
 
-    public void quitGame(View view) {
+    //this function is called from the xml_file
+    public void quitGame() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            finishAndRemoveTask();
+            finish();
+            Intent intent = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
+            startActivity(intent);
         } else {
             finish();
+            Intent intent = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
+            startActivity(intent);
         }
     }
 
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+    //this function is called from the xml_file
+    public void setPause_btn(){
+        if(!pause_flg & !pausebtn_flg){
+            pause_flg = true;
+            timer.cancel();
+            timer = null;
+            pause_btn.setText("Play");
+        }
+        else if(!pause_flg & pausebtn_flg){
+            pause_flg = true;
+            timer.cancel();
+            timer = null;
+            pause_btn.setText("Play");
+        }
+        else if(pause_flg & !pausebtn_flg){
+            pause_flg = true;
+            pause_btn.setText("Play");
+        }
+        else if(pause_flg & pausebtn_flg){
+            pause_flg = false;
+            pausebtn_flg = false;
+            pause_btn.setText("Pause");
             timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
@@ -374,11 +444,78 @@ public class MainCatchBallActivity extends AppCompatActivity {
                     }
                 }
             }, 0, 20);
-            timer.cancel();
-            timer = null;
-            start_flg = false;
         }
-        return super.onKeyDown(keyCode, event);
     }
 
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+//            Toast.makeText(MainCatchBallActivity.this, "hello", Toast.LENGTH_SHORT).show();
+//            timer = new Timer();
+//            timer.schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    if (start_flg) {
+//                        handler.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                changePos();
+//                            }
+//                        });
+//                    }
+//                }
+//            }, 0, 20);
+//            timer.cancel();
+//            timer = null;
+//            start_flg = false;
+//            finish();
+//            Intent intent = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
+//            startActivity(intent);
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
+//
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (start_flg) {
+            pausebtn_flg = false;
+            setPause_btn();
+        }
+        if(!start_flg){
+            Toast.makeText(MainCatchBallActivity.this, "quit_game", Toast.LENGTH_SHORT).show();
+            quitGame();
+        }
+    }
+
+    public void checkHighScore()
+    {
+        final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference().child("High Score").child("Game 3");
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    HighscoreClass value = dataSnapshot1.getValue(HighscoreClass.class);
+                    String highscore1 = value.getHighscore();
+                    gHighScoreLabel.setText("Global High Score : " + value.getHighscore());
+                    if (score > Integer.parseInt(highscore1)) {
+                        HighscoreClass highscoreClass = new HighscoreClass(acct.getDisplayName(), String.valueOf(score));
+                        mDatabaseReference.child("03").setValue(highscoreClass);
+                    } else {
+                        gHighScoreLabel.setText("Global High Score : " + highscore1);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Failed to read value
+                Log.w("Hello", "Failed to read value.", databaseError.toException());
+            }
+        });
+    }
 }

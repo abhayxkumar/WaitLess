@@ -39,6 +39,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,6 +56,8 @@ public class InvoiceActivity extends AppCompatActivity {
     public static TextView emptyCart;
     public static int tableno;
     public FirebaseAuth.AuthStateListener authStateListener;
+    TextView nav_username,nav_email;
+    CircularImageView nav_image;
     ImageView cartRupeeSymbol;
     TextView buttonText;
     Context context;
@@ -176,10 +180,15 @@ public class InvoiceActivity extends AppCompatActivity {
                     }
                 });
 
-//        View headerView = navigationView.getHeaderView(0);
-//        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-//        nav_username.setText(acct.getDisplayName());
+        View headerView = navigationView.getHeaderView(0);
+        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
+        nav_image = (CircularImageView) headerView.findViewById(R.id.nav_image);
+        nav_email = (TextView)headerView.findViewById(R.id.nav_email);
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        nav_username.setText(acct.getDisplayName());
+        nav_email.setText(acct.getEmail());
+        Picasso.get().load(acct.getPhotoUrl()).into(nav_image);
 
         mDrawerLayout.addDrawerListener(
                 new DrawerLayout.DrawerListener() {
@@ -210,7 +219,6 @@ public class InvoiceActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(InvoiceActivity.this);
         String email = acct.getEmail();
         Query query = databaseReference.child("users").orderByChild("email").equalTo(email);
         query.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -1,5 +1,7 @@
 package com.example.hetavdesai.pl2project;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,11 +10,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class BirdGameView extends View {
@@ -53,6 +59,9 @@ public class BirdGameView extends View {
     public int count=0;
     private Paint levelPaint = new Paint();
 
+    //Pause
+    private Paint pausePaint = new Paint();
+
     // Life
     private Bitmap life[] = new Bitmap[2];
     private int life_count;
@@ -60,7 +69,7 @@ public class BirdGameView extends View {
     // Status Check
     private boolean touch_flg = false;
 
-
+    @SuppressLint("ResourceAsColor")
     public BirdGameView(Context context) {
         super(context);
 
@@ -86,6 +95,11 @@ public class BirdGameView extends View {
         levelPaint.setTypeface(Typeface.DEFAULT_BOLD);
         levelPaint.setTextAlign(Paint.Align.CENTER);
         levelPaint.setAntiAlias(true);
+
+//        pausePaint.setColor(Color.);
+//        pausePaint.setTextSize(60);
+//        pausePaint.setTypeface(Typeface.DEFAULT_BOLD);
+//        pausePaint.setAntiAlias(true);
 
         life[0] = BitmapFactory.decodeResource(getResources(), R.drawable.birdgame_heart);
         life[1] = BitmapFactory.decodeResource(getResources(), R.drawable.birdgame_heart_g);
@@ -113,8 +127,13 @@ public class BirdGameView extends View {
         int maxBirdY = canvasHeight - bird[0].getHeight() * 3;
 
         birdY += birdSpeed;
-        if (birdY < minBirdY) birdY = minBirdY;
-        if (birdY > maxBirdY) birdY = maxBirdY;
+        if (birdY < minBirdY){
+            birdY = minBirdY;
+
+        }
+        if (birdY > maxBirdY){
+            birdY = maxBirdY;
+        }
         birdSpeed += 2;
 
         if (touch_flg) {
@@ -212,11 +231,12 @@ public class BirdGameView extends View {
 
     public void gameOver() {
         // birdGameMainActivity.setContentView(R.layout.bird_game_main_activity);
+        ((Activity)getContext()).finish();
         Intent intent = new Intent("com.example.hetavdesai.pl2project.BirdGameOverActivity");
         intent.putExtra("SCORE", score);
         getContext().startActivity(intent);
     }
-
+}
 //    @Override
 //    public boolean onKeyDown(int keyCode, KeyEvent event)
 //    {
@@ -227,4 +247,3 @@ public class BirdGameView extends View {
 //        return super.onKeyDown(keyCode, event);
 //    }
 
-}

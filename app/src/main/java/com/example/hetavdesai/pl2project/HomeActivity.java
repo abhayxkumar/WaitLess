@@ -80,6 +80,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        buttonCart = findViewById(R.id.btn_cart);
 
         scannedBarcodeActivity = new ScannedBarcodeActivity();
 
@@ -115,6 +116,12 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         };
+
+        if (cart_size == 0) {
+            buttonCart.setVisibility(View.GONE);
+        } else {
+            buttonCart.setVisibility(View.VISIBLE);
+        }
 
         nav_drawer.bringToFront();
 
@@ -209,9 +216,6 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
         );
-
-        buttonCart = findViewById(R.id.btn_cart);
-
         buttonCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

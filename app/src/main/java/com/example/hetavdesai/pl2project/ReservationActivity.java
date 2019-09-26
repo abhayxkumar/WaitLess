@@ -33,6 +33,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -46,7 +48,8 @@ public class ReservationActivity extends AppCompatActivity {
 
     final Calendar myCalendar = Calendar.getInstance();
     public FirebaseAuth.AuthStateListener authStateListener;
-    TextView nav_username;
+    TextView nav_username,nav_email;
+    CircularImageView nav_image;
     Random r = new Random();
     private DrawerLayout mDrawerLayout;
     private MenuItem item;
@@ -166,10 +169,15 @@ public class ReservationActivity extends AppCompatActivity {
                     }
                 });
 
-//        View headerView = navigationView.getHeaderView(0);
-//        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-//        nav_username.setText(acct.getDisplayName());
+        View headerView = navigationView.getHeaderView(0);
+        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
+        nav_image = (CircularImageView) headerView.findViewById(R.id.nav_image);
+        nav_email = (TextView)headerView.findViewById(R.id.nav_email);
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        nav_username.setText(acct.getDisplayName());
+        nav_email.setText(acct.getEmail());
+        Picasso.get().load(acct.getPhotoUrl()).into(nav_image);
 
         mDrawerLayout.addDrawerListener(
                 new DrawerLayout.DrawerListener() {
@@ -208,7 +216,6 @@ public class ReservationActivity extends AppCompatActivity {
         inputPhone = (EditText) findViewById(R.id.input_phone);
 
         firebaseUser = auth.getCurrentUser();
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         inputName.setText(acct.getDisplayName());
         inputPhone.setText(firebaseUser.getPhoneNumber());
         inputEmail.setText(acct.getEmail());

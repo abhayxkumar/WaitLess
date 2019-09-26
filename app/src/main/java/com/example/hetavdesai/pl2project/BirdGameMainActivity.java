@@ -1,6 +1,7 @@
 package com.example.hetavdesai.pl2project;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -39,5 +40,13 @@ public class BirdGameMainActivity extends AppCompatActivity {
             }
         }, 0, TIMER_INTERVAL);
 
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
+        startActivity(intent);
+        super.onBackPressed();
+        return;
     }
 }

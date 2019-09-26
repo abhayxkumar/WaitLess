@@ -34,6 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
@@ -46,12 +48,13 @@ import static com.example.hetavdesai.pl2project.CartRecyclerAdapter.cart_size;
 public class FullMenuActivity extends AppCompatActivity {
 
     public FirebaseAuth.AuthStateListener authStateListener;
-    TextView nav_username;
     FirebaseDatabase database;
     DatabaseReference myRef;
     List<FoodCategoriesClass> list;
     List<CartClass> listNew;
     RecyclerView recycleFullMenu;
+    TextView nav_username,nav_email;
+    CircularImageView nav_image;
     FMRecyclerAdapter fmRecyclerAdapter;
     private DrawerLayout mDrawerLayout;
     private MenuItem item;
@@ -63,7 +66,7 @@ public class FullMenuActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private DatabaseReference databaseReference;
     TextView itemCount;
-//    public static ImageView catImage;
+    public static ImageView catImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,21 +170,15 @@ public class FullMenuActivity extends AppCompatActivity {
                     }
                 });
 
-        //DataSnapshot dataSnapshot =
-        //UserClass userClass = dataSnapshot.getValue(UserClass.class)
+        View headerView = navigationView.getHeaderView(0);
+        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
+        nav_image = (CircularImageView) headerView.findViewById(R.id.nav_image);
+        nav_email = (TextView)headerView.findViewById(R.id.nav_email);
 
-//        View headerView = navigationView.getHeaderView(0);
-//        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-//        nav_username.setText(acct.getDisplayName());
-
-
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.setDisplayHomeAsUpEnabled(true);
-//        actionbar.setHomeAsUpIndicator(R.drawable.ic_nav_menu);
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        nav_username.setText(acct.getDisplayName());
+        nav_email.setText(acct.getEmail());
+        Picasso.get().load(acct.getPhotoUrl()).into(nav_image);
 
         mDrawerLayout.addDrawerListener(
                 new DrawerLayout.DrawerListener() {
@@ -246,7 +243,7 @@ public class FullMenuActivity extends AppCompatActivity {
                 recycleFullMenu.setItemAnimator(new DefaultItemAnimator());
                 recycleFullMenu.setAdapter(fmRecyclerAdapter);
                 //int spacingInPixels = getResources().getDimensionPixelSize(5);
-                recycleFullMenu.addItemDecoration(new SpacesItemDecoration(0));
+//                recycleFullMenu.addItemDecoration(new SpacesItemDecoration(0));
             }
 
             @Override
@@ -260,7 +257,6 @@ public class FullMenuActivity extends AppCompatActivity {
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(FullMenuActivity.this);
         String email = acct.getEmail();
         Query query = databaseReference.child("users").orderByChild("email").equalTo(email);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -325,7 +321,6 @@ public class FullMenuActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 

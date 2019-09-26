@@ -3,8 +3,10 @@ package com.example.hetavdesai.pl2project;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -15,20 +17,34 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class BirdGameOverActivity extends AppCompatActivity {
 
     public int highScore, score;
     ImageView imageView1, imageView2;
     private Button try_again;
     private Button quit_game;
+    BirdGameView birdGameView;
+    FirebaseDatabase mFirebaseDatabase;
+    DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bird_game_over_activity);
 
+        final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+
         TextView scoreLabel = findViewById(R.id.Score_BirdGame);
-        TextView highScoreLabel = findViewById(R.id.high_score);
+        final TextView gHighScoreLabel = findViewById(R.id.gHighScore1);
+        final TextView highScoreLabel = findViewById(R.id.high_score);
         imageView1 = findViewById(R.id.Image_Bird1);
         imageView2 = findViewById(R.id.Image_Bird2);
         score = getIntent().getIntExtra("SCORE", 0);
@@ -47,12 +63,39 @@ public class BirdGameOverActivity extends AppCompatActivity {
             highScoreLabel.setText("High Score : " + highScore);
         }
 
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference().child("High Score").child("Game 1");
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    HighscoreClass value = dataSnapshot1.getValue(HighscoreClass.class);
+                    String highscore1 = value.getHighscore();
+                    gHighScoreLabel.setText("Global High Score : " + value.getHighscore());
+                    if (score > Integer.parseInt(highscore1)) {
+                        HighscoreClass highscoreClass = new HighscoreClass(acct.getDisplayName(), String.valueOf(score));
+                        mDatabaseReference.child("01").setValue(highscoreClass);
+                    } else {
+                        gHighScoreLabel.setText("Global High Score : " + highscore1);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Failed to read value
+                Log.w("Hello", "Failed to read value.", databaseError.toException());
+            }
+        });
+
         try_again = findViewById(R.id.try_again);
         quit_game = findViewById(R.id.quit_game);
 
         try_again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 startActivity(new Intent(getApplicationContext(), BirdGameMainActivity.class));
             }
         });
@@ -60,6 +103,7 @@ public class BirdGameOverActivity extends AppCompatActivity {
         quit_game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent intent = new Intent(getApplicationContext(), MiniGamesActivity.class);
                 //  intent.putExtra("Highscore : ", highScore);
                 startActivity(intent);
@@ -137,6 +181,14 @@ public class BirdGameOverActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), MiniGamesActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+        return;
     }
 //    @Override
 //    public boolean onTouchEvent(MotionEvent event) {

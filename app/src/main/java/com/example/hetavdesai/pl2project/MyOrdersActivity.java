@@ -30,6 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,8 @@ import static com.example.hetavdesai.pl2project.CartRecyclerAdapter.cart_size;
 
 public class MyOrdersActivity extends AppCompatActivity {
 
+    TextView nav_username,nav_email;
+    CircularImageView nav_image;
     private DrawerLayout mDrawerLayout;
     private MenuItem item;
     private ImageButton nav_drawer;
@@ -47,7 +51,6 @@ public class MyOrdersActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference, databaseReference;
     private FirebaseUser mFirebaseUser;
-    TextView nav_username;
     private GoogleSignInClient mGoogleSignInClient;
     List<OrderClass> list;
     List<CartClass> listNew;
@@ -214,10 +217,14 @@ public class MyOrdersActivity extends AppCompatActivity {
                     }
                 });
 
-//        View headerView = navigationView.getHeaderView(0);
-//        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-//        nav_username.setText(acct.getDisplayName());
+        View headerView = navigationView.getHeaderView(0);
+        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
+        nav_image = (CircularImageView) headerView.findViewById(R.id.nav_image);
+        nav_email = (TextView)headerView.findViewById(R.id.nav_email);
+
+        nav_username.setText(acct.getDisplayName());
+        nav_email.setText(acct.getEmail());
+        Picasso.get().load(acct.getPhotoUrl()).into(nav_image);
 
 
         mDrawerLayout.addDrawerListener(

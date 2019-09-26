@@ -43,15 +43,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Score : "
-            android:textSize="30dp" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/high_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="High Score : 300"
-            android:textSize="15dp" />
+            android:text="Your High Score : "
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/gHighScore1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Global High Score : 300"
+            android:textSize="20dp" />
+
 
     </LinearLayout>
 

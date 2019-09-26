@@ -1,5 +1,6 @@
 package com.example.hetavdesai.pl2project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,6 +26,13 @@ public class MainFlappyActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
 
         setContentView(new FlappyGameView(this));
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
+        startActivity(intent);
+        super.onBackPressed();
     }
 }
 

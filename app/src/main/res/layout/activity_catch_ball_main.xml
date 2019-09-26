@@ -14,10 +14,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@android:color/white"
+        android:fontFamily="@font/brewmaster_regular"
         android:gravity="center"
+        android:textColor="@color/colorPrimary"
         android:paddingVertical="14dp"
         android:text="Score : 0"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <FrameLayout
@@ -26,6 +28,14 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:background="@android:color/white">
+
+        <Button
+            android:id="@+id/pause_btn"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="pause"/>
 
         <ImageView
             android:id="@+id/box"
@@ -64,35 +74,61 @@
             android:gravity="center"
             android:orientation="vertical">
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Catch the Ball"
-                android:textSize="24sp" />
+                android:layout_marginTop="10dp"
+                android:text="Birdweiser"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/brewmaster_regular"
+                android:textColor="@color/colorPrimary"/>
+
+
+            <ImageView
+                android:id="@+id/box_display"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/box_right"
+                android:visibility="visible" />
+
 
             <TextView
                 android:id="@+id/highScoreLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:text="High Score : 300"
+                android:layout_marginTop="60dp"
+                android:text="Your High Score : 300"
+                android:fontFamily="@font/brewmaster_regular"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="@color/colorPrimary"/>
+
+            <TextView
+                android:id="@+id/gHighScoreLabel3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Global High Score : 300"
+                android:fontFamily="@font/brewmaster_regular"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
                 android:onClick="startGame"
-                android:text="START" />
+                android:text="START"
+                android:textColor="@color/colorPrimary"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:onClick="quitGame"
-                android:text="Quit" />
+                android:id="@+id/quit_game"
+                android:text="Quit"
+                android:textColor="@color/colorPrimary"/>
 
         </LinearLayout>
 

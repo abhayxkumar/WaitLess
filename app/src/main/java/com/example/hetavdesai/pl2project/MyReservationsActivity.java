@@ -38,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,8 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 public class MyReservationsActivity extends AppCompatActivity {
 
     public FirebaseAuth.AuthStateListener authStateListener;
-    TextView nav_username;
+    TextView nav_username,nav_email;
+    CircularImageView nav_image;
     List<ReservationClass> list, list2;
     RecyclerView recycle, recycle2;
     private DrawerLayout mDrawerLayout;
@@ -164,11 +166,15 @@ public class MyReservationsActivity extends AppCompatActivity {
                     }
                 });
 
-//        View headerView = navigationView.getHeaderView(0);
-//        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-//        nav_username.setText(acct.getDisplayName());
+        View headerView = navigationView.getHeaderView(0);
+        nav_username = (TextView)headerView.findViewById(R.id.nav_username);
+        nav_image = (CircularImageView) headerView.findViewById(R.id.nav_image);
+        nav_email = (TextView)headerView.findViewById(R.id.nav_email);
 
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        nav_username.setText(acct.getDisplayName());
+        nav_email.setText(acct.getEmail());
+        Picasso.get().load(acct.getPhotoUrl()).into(nav_image);
         mDrawerLayout.addDrawerListener(
                 new DrawerLayout.DrawerListener() {
                     @Override
@@ -297,7 +303,6 @@ public class MyReservationsActivity extends AppCompatActivity {
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(MyReservationsActivity.this);
         String email = acct.getEmail();
         Query query = databaseReference.child("users").orderByChild("email").equalTo(email);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
