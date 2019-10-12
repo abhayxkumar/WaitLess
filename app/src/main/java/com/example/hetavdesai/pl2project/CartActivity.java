@@ -55,7 +55,7 @@ public class CartActivity extends AppCompatActivity {
     Context context;
     List<CartClass> list;
     RecyclerView recycle;
-    CartClass value, fire;
+    CartClass value1, fire1;
     String itemName, itemPrice, itemQuantity, tableNo;
     public static boolean swipeFlag;
     private DrawerLayout mDrawerLayout;
@@ -296,13 +296,13 @@ public class CartActivity extends AppCompatActivity {
                                 list = new ArrayList<>();
                                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
-                                    value = dataSnapshot1.getValue(CartClass.class);
-                                    fire = new CartClass();
+                                    value1 = dataSnapshot1.getValue(CartClass.class);
+                                    fire1 = new CartClass();
 
-                                    itemName = value.getName();
-                                    itemQuantity = String.valueOf(value.getQuantity());
-                                    itemPrice = String.valueOf(value.getPrice());
-                                    tableNo = String.valueOf(value.getTableno());
+                                    itemName = value1.getName();
+                                    itemQuantity = String.valueOf(value1.getQuantity());
+                                    itemPrice = String.valueOf(value1.getPrice());
+                                    tableNo = String.valueOf(value1.getTableno());
 
                                     abc();
                                 }
@@ -332,15 +332,15 @@ public class CartActivity extends AppCompatActivity {
         if(swipeFlag) {
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
             DatabaseReference databaseReference = mFirebaseDatabase.getReference();
-            String key = databaseReference.push().getKey();
-            OrderClass orderClass = new OrderClass(value.getTableno(), key, Calendar.getInstance().getTime().toString(), value.getTotal());
-            OrderItemClass orderItemClass = new OrderItemClass(itemName, itemPrice, itemQuantity, tableNo, 0, value.getUsername());
-            databaseReference.child("Order").child(String.valueOf(value.getTableno())).setValue(orderClass);
-            databaseReference.child("Order Copy").child(String.valueOf(value.getTableno())).setValue(orderClass);
-            databaseReference.child("Order Summary").child(String.valueOf(value.getTableno())).setValue(orderClass);
-            databaseReference.child("Order Items").child(tableNo).child(value.getUsername()).child(key).setValue(orderItemClass);
-            databaseReference.child("Order Items Copy").child(tableNo).child(value.getUsername()).child(key).setValue(orderItemClass);
-            databaseReference.child("Order Items Summary").child(tableNo).child(value.getUsername()).child(key).setValue(orderItemClass);
+            final String key = databaseReference.push().getKey();
+            OrderClass orderClass = new OrderClass(value1.getTableno(), key, Calendar.getInstance().getTime().toString(), value1.getTotal());
+            OrderItemClass orderItemClass = new OrderItemClass(itemName, itemPrice, itemQuantity, tableNo, 0, value1.getUsername());
+            databaseReference.child("Order").child(String.valueOf(value1.getTableno())).setValue(orderClass);
+            databaseReference.child("Order Copy").child(String.valueOf(value1.getTableno())).setValue(orderClass);
+            databaseReference.child("Order Summary").child(String.valueOf(value1.getTableno())).setValue(orderClass);
+            databaseReference.child("Order Items").child(String.valueOf(value1.getTableno())).child(value1.getUsername()).push().setValue(orderItemClass);
+            databaseReference.child("Order Items Copy").child(String.valueOf(value1.getTableno())).child(value1.getUsername()).push().setValue(orderItemClass);
+            databaseReference.child("Order Items Summary").child(String.valueOf(value1.getTableno())).child(value1.getUsername()).push().setValue(orderItemClass);
         }
     }
 

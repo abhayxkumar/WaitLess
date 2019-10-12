@@ -12,134 +12,134 @@
     android:layout_marginBottom="1dp"
     card_view:cardCornerRadius="6dp">
 
-    <com.vipulasri.ticketview.TicketView android:layout_width="match_parent"
-        android:layout_height="160dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/ticketView"
-        app:ticketOrientation="vertical"
-        app:ticketScallopRadius="10dp"
-        app:ticketShowBorder="false"
-        app:ticketScallopPositionPercent="50"
-        app:ticketShowDivider="true"
-        app:ticketDividerType="dash"
-        app:ticketDividerPadding="0dp"
-        app:ticketElevation="14dp"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <com.vipulasri.ticketview.TicketView android:layout_width="match_parent"-->
+<!--        android:layout_height="160dp"-->
+<!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:id="@+id/ticketView"-->
+<!--        app:ticketOrientation="vertical"-->
+<!--        app:ticketScallopRadius="10dp"-->
+<!--        app:ticketShowBorder="false"-->
+<!--        app:ticketScallopPositionPercent="50"-->
+<!--        app:ticketShowDivider="true"-->
+<!--        app:ticketDividerType="dash"-->
+<!--        app:ticketDividerPadding="0dp"-->
+<!--        app:ticketElevation="14dp"-->
+<!--        xmlns:android="http://schemas.android.com/apk/res/android">-->
 
-    </com.vipulasri.ticketview.TicketView>
-
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/main_content"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/reservation_id_text"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:paddingLeft="16dp"-->
-<!--            android:paddingTop="16dp"-->
-<!--            android:paddingRight="16dp"-->
-<!--            android:layout_marginBottom="5dp"-->
-<!--            android:textSize="12sp"-->
-<!--            android:text="Order Number"/>-->
+<!--    </com.vipulasri.ticketview.TicketView>-->
 
 
-<!--        <TextView-->
-<!--            android:id="@+id/user_name_resact"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:paddingLeft="16dp"-->
-<!--            android:paddingRight="16dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="16sp"-->
-<!--            android:letterSpacing="0.1"-->
-<!--            android:text="Hetav Desai"-->
-<!--            android:fontFamily="@font/montesrat"/>-->
+    <LinearLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:paddingLeft="16dp"-->
-<!--            android:paddingRight="16dp">-->
+        <TextView
+            android:id="@+id/reservation_id_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="12sp"
+            android:text="Order Number"/>
 
-<!--            <ImageView-->
-<!--                android:layout_width="14dp"-->
-<!--                android:layout_height="14dp"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                app:srcCompat="@drawable/ic_today_black_24dp" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/date_resact"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="6dp"-->
-<!--                android:text="Date"-->
-<!--                android:fontFamily="@font/montesrat"/>-->
+        <TextView
+            android:id="@+id/user_name_resact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:letterSpacing="0.1"
+            android:text="Hetav Desai"
+            android:fontFamily="@font/montesrat"/>
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="\t|\t"-->
-<!--                android:fontFamily="@font/montesrat"/>-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
-<!--            <TextView-->
-<!--                android:id="@+id/time_resact"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Time"-->
-<!--                android:fontFamily="@font/montesrat"/>-->
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_today_black_24dp" />
 
-<!--        </LinearLayout>-->
+            <TextView
+                android:id="@+id/date_resact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:text="Date"
+                android:fontFamily="@font/montesrat"/>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:paddingLeft="16dp"-->
-<!--            android:paddingRight="16dp">-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\t|\t"
+                android:fontFamily="@font/montesrat"/>
 
-<!--            <ImageView-->
-<!--                android:layout_width="14dp"-->
-<!--                android:layout_height="14dp"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:layout_marginRight="6dp"-->
-<!--                app:srcCompat="@drawable/ic_people_black_24dp" />-->
+            <TextView
+                android:id="@+id/time_resact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:fontFamily="@font/montesrat"/>
 
-<!--            <TextView-->
-<!--                android:id="@+id/peep_count_resact"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Number of Persons"-->
-<!--                android:fontFamily="@font/montesrat"/>-->
+        </LinearLayout>
 
-<!--        </LinearLayout>-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:background="@color/colorGrey"-->
-<!--            android:layout_marginRight="16dp"-->
-<!--            android:layout_marginLeft="16dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginBottom="5dp"/>-->
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="6dp"
+                app:srcCompat="@drawable/ic_people_black_24dp" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/reservation_status"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="4dp"-->
-<!--            android:layout_marginBottom="14dp"-->
-<!--            android:paddingLeft="16dp"-->
-<!--            android:textColor="@android:color/holo_orange_dark"-->
-<!--            android:text="Reservation Status"/>-->
+            <TextView
+                android:id="@+id/peep_count_resact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Persons"
+                android:fontFamily="@font/montesrat"/>
 
-<!--    </LinearLayout>-->
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/reservation_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="14dp"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:text="Reservation Status"/>
+
+    </LinearLayout>
 
 
 </android.support.v7.widget.CardView>

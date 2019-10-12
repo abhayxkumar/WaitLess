@@ -55,10 +55,9 @@ public class BirdGameOverActivity extends AppCompatActivity {
 
         if (score > highScore) {
             highScoreLabel.setText("High Score : " + score);
-
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("HIGH_SCORE", score);
-            editor.commit();
+            editor.apply();
         } else {
             highScoreLabel.setText("High Score : " + highScore);
         }
@@ -72,8 +71,8 @@ public class BirdGameOverActivity extends AppCompatActivity {
                     HighscoreClass value = dataSnapshot1.getValue(HighscoreClass.class);
                     String highscore1 = value.getHighscore();
                     gHighScoreLabel.setText("Global High Score : " + value.getHighscore());
-                    if (score > Integer.parseInt(highscore1)) {
-                        HighscoreClass highscoreClass = new HighscoreClass(acct.getDisplayName(), String.valueOf(score));
+                    if (highScore > Integer.parseInt(highscore1)) {
+                        HighscoreClass highscoreClass = new HighscoreClass(acct.getDisplayName(), String.valueOf(highScore));
                         mDatabaseReference.child("01").setValue(highscoreClass);
                     } else {
                         gHighScoreLabel.setText("Global High Score : " + highscore1);
@@ -167,7 +166,7 @@ public class BirdGameOverActivity extends AppCompatActivity {
                 if (images.length - 1 > imageIndex) {
                     animate(imageView, images, imageIndex + 1, forever);//Calls itself until it gets to the end of the array
                 } else {
-                    if (forever == true) {
+                    if (forever) {
                         animate(imageView, images, 0, forever);  //Calls itself to start the animation all over again in a loop if forever = true
                     }
                 }

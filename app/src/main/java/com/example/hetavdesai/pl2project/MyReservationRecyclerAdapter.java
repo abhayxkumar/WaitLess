@@ -52,7 +52,6 @@ public class MyReservationRecyclerAdapter extends RecyclerView.Adapter<MyReserva
         mylist = list.get(position);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Reservations").child(mylist.getReservationId());
-
         holder.name.setText(mylist.getName());
         holder.id.setText(mylist.getReservationId());
         holder.date.setText(mylist.getDate());

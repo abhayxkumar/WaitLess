@@ -501,8 +501,8 @@ public class MainCatchBallActivity extends AppCompatActivity {
                     HighscoreClass value = dataSnapshot1.getValue(HighscoreClass.class);
                     String highscore1 = value.getHighscore();
                     gHighScoreLabel.setText("Global High Score : " + value.getHighscore());
-                    if (score > Integer.parseInt(highscore1)) {
-                        HighscoreClass highscoreClass = new HighscoreClass(acct.getDisplayName(), String.valueOf(score));
+                    if (highScore > Integer.parseInt(highscore1)) {
+                        HighscoreClass highscoreClass = new HighscoreClass(acct.getDisplayName(), String.valueOf(highScore));
                         mDatabaseReference.child("03").setValue(highscoreClass);
                     } else {
                         gHighScoreLabel.setText("Global High Score : " + highscore1);

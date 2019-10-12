@@ -10,15 +10,20 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static java.lang.Math.pow;
 
 
 public class BirdGameView extends View {
@@ -40,6 +45,7 @@ public class BirdGameView extends View {
     private int blueY;
     private int blueSpeed = 15;
     private Paint bluePaint = new Paint();
+    private Bitmap blue_ball;
     //Red Ball
     private int redX;
     private int redY;
@@ -58,6 +64,7 @@ public class BirdGameView extends View {
     private int level;
     public int count=0;
     private Paint levelPaint = new Paint();
+    private Paint TopupPaint = new Paint();
 
     //Pause
     private Paint pausePaint = new Paint();
@@ -68,6 +75,14 @@ public class BirdGameView extends View {
 
     // Status Check
     private boolean touch_flg = false;
+    private boolean topupflag = false;
+    private boolean Blackflag = true;
+
+    //Animation
+    ImageView imageView;
+
+    //Topup
+    int x=0;
 
     @SuppressLint("ResourceAsColor")
     public BirdGameView(Context context) {
@@ -75,14 +90,18 @@ public class BirdGameView extends View {
 
         bird[0] = BitmapFactory.decodeResource(getResources(), R.drawable.birdgame_bird1);
         bird[1] = BitmapFactory.decodeResource(getResources(), R.drawable.birdgame_bird2);
+        blue_ball = BitmapFactory.decodeResource(getResources(),R.drawable.bullet_ball_blue);
 
         bluePaint.setColor(Color.BLUE);
+       // bluePaint.setShadowLayer(5, 0, 0, Color.BLUE);
         bluePaint.setAntiAlias(false);
 
         redPaint.setColor(Color.RED);
+      //  redPaint.setShadowLayer(5, 0, 0, Color.RED);
         redPaint.setAntiAlias(false);
 
         blackPaint.setColor(Color.BLACK);
+       // blackPaint.setShadowLayer(5, 0, 0, Color.GRAY);
         blackPaint.setAntiAlias(false);
 
         scorePaint.setColor(Color.BLACK);
@@ -95,6 +114,12 @@ public class BirdGameView extends View {
         levelPaint.setTypeface(Typeface.DEFAULT_BOLD);
         levelPaint.setTextAlign(Paint.Align.CENTER);
         levelPaint.setAntiAlias(true);
+
+        TopupPaint.setColor(Color.parseColor("#FFFFFF"));
+        TopupPaint.setTextSize(50);
+        TopupPaint.setShadowLayer(30, 0, 0, Color.BLACK);
+        TopupPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        TopupPaint.setAntiAlias(true);
 
 //        pausePaint.setColor(Color.);
 //        pausePaint.setTextSize(60);
@@ -155,6 +180,8 @@ public class BirdGameView extends View {
             blueX = canvasWidth + 20;
             blueY = (int) Math.floor(Math.random() * (maxBirdY - minBirdY)) + minBirdY;
         }
+      //  canvas.drawBitmap(blue_ball, blueX, blueY, null);
+       // canvas.drawBitmap(blue_ball, blueX, blueY, bluePaint);
         canvas.drawCircle(blueX, blueY, 10, bluePaint);
 
         // Red
@@ -172,7 +199,7 @@ public class BirdGameView extends View {
         // Black
         for(int i=0;i<level;i++) {
             blackX[i] -= blackSpeed[i];
-            if (hitCheck(blackX[i], blackY[i])) {
+            if (hitCheck(blackX[i], blackY[i]) && Blackflag) {
                 blackX[i] = -100;
                 life_count--;
                 if (life_count == 0) {
@@ -180,12 +207,19 @@ public class BirdGameView extends View {
                     Log.v("Message", "Game Over");
                     gameOver();
                 }
+                else {
+                    invincibility();
+                }
             }
             if (blackX[i] < 0) {
                 blackX[i] = canvasWidth + 200;
                 blackY[i] = (int) Math.floor(Math.random() * (maxBirdY - minBirdY)) + minBirdY;
             }
             canvas.drawCircle(blackX[i], blackY[i], 20, blackPaint);
+        }
+        if(topupflag){
+            canvas.drawText("+"+x,100,120,TopupPaint);
+            canvas.drawText("Level UP",canvasWidth*4/10,canvasHeight - bird[0].getHeight(),TopupPaint);
         }
         // Score
         canvas.drawText("Score : " + score, 20, 60, scorePaint);
@@ -195,7 +229,7 @@ public class BirdGameView extends View {
 
         // Life
         for (int i = 0; i < 3; i++) {
-            int x = (int) (760 + life[0].getWidth() * 1.5 * i);
+            int x = (int) (canvasWidth*9/10 - life[0].getWidth() * 1.5 * i);
             int y = 30;
 
             if (i < life_count) {
@@ -223,12 +257,49 @@ public class BirdGameView extends View {
             if(count==40) {
                 blackSpeed[level] = blackSpeed[level-1] + 4;
                 level++;
+                x = (int) (pow(2,level-1)*10);
+                levelupscore();
+                score = score + x;
                 count=0;
             }
         }
         return true;
     }
 
+    public void levelupscore(){
+        new CountDownTimer(3000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                topupflag=true;
+                //mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                //here you can have your logic to set text to edittext
+            }
+
+            public void onFinish() {
+                //Score topup
+               topupflag = false;
+            }
+
+        }.start();
+    }
+
+    public void invincibility(){
+        new CountDownTimer(3000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+
+                Blackflag = false;
+                //mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                //here you can have your logic to set text to edittext
+            }
+
+            public void onFinish() {
+                //Score topup
+                Blackflag = true;
+            }
+
+        }.start();
+    }
     public void gameOver() {
         // birdGameMainActivity.setContentView(R.layout.bird_game_main_activity);
         ((Activity)getContext()).finish();

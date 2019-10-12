@@ -45,6 +45,16 @@ public class GameOverFlappyActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("HIGH_SCORE_FLAPPY", Context.MODE_PRIVATE);
         highScore = settings.getInt("HIGH_SCORE", 0);
 
+        if (score > highScore) {
+            highScoreLabel.setText("High Score : " + score);
+
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("HIGH_SCORE", score);
+            editor.commit();
+        } else {
+            highScoreLabel.setText("High Score : " + highScore);
+        }
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference().child("High Score").child("Game 2");
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -54,8 +64,8 @@ public class GameOverFlappyActivity extends AppCompatActivity {
                     HighscoreClass value = dataSnapshot1.getValue(HighscoreClass.class);
                     String highscore1 = value.getHighscore();
                     gHighScoreLabel.setText("High Score : " + value.getHighscore());
-                    if (score > Integer.parseInt(highscore1)) {
-                        HighscoreClass highscoreClass = new HighscoreClass(acct.getDisplayName(), String.valueOf(score));
+                    if (highScore > Integer.parseInt(highscore1)) {
+                        HighscoreClass highscoreClass = new HighscoreClass(acct.getDisplayName(), String.valueOf(highScore));
                         mDatabaseReference.child("02").setValue(highscoreClass);
                     } else {
                         gHighScoreLabel.setText("High Score : " + highscore1);
@@ -70,16 +80,6 @@ public class GameOverFlappyActivity extends AppCompatActivity {
                 Log.w("Hello", "Failed to read value.", databaseError.toException());
             }
         });
-
-        if (score > highScore) {
-            highScoreLabel.setText("High Score : " + score);
-
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putInt("HIGH_SCORE", score);
-            editor.commit();
-        } else {
-            highScoreLabel.setText("High Score : " + highScore);
-        }
 
         try_again = findViewById(R.id.flappy_try_again);
         quit_game = findViewById(R.id.flappy_quit_game);

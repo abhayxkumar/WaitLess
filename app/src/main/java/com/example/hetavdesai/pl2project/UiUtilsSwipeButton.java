@@ -10,7 +10,7 @@ public class UiUtilsSwipeButton {
 
     public static void animateFadeHide(Context context, View view) {
         if (view != null && view.getVisibility() == View.VISIBLE) {
-            Animation animFadeOut = AnimationUtils.loadAnimation(context, R.anim.fade_out);
+            Animation animFadeOut = AnimationUtils.loadAnimation(context, R.anim.birdgame_fade_out);
 
             view.startAnimation(animFadeOut);
             view.setVisibility(View.GONE);
@@ -19,7 +19,7 @@ public class UiUtilsSwipeButton {
 
     public static void animateFadeShow(Context context, View view) {
         if (view.getVisibility() != View.VISIBLE) {
-            Animation animFadeIn = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+            Animation animFadeIn = AnimationUtils.loadAnimation(context, R.anim.birdgame_fade_in);
 
             view.startAnimation(animFadeIn);
             view.setVisibility(View.VISIBLE);

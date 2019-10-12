@@ -1,9 +1,18 @@
 package com.example.hetavdesai.pl2project;
 
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     public MessagingMain messagingMain;
+    public NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         btnGoogleLogin = (TextView) findViewById(R.id.sign_in_button);
+        notificationManagerCompat = NotificationManagerCompat.from(this);
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -73,6 +84,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class));
                 finish();
             } else {
+             //   Toast.makeText(this,"Biee",Toast.LENGTH_SHORT).show();
+               // sendLoginNotif();
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 finish();
             }
@@ -174,6 +187,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void updateUI(FirebaseUser user) {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (acct != null) {
+            sendLoginNotif();
             String personName = acct.getDisplayName();
             messagingMain = new MessagingMain();
             messagingMain.generalusers();
@@ -190,6 +204,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
 
         }
+    }
+
+    public void sendLoginNotif(){
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Intent intent = new Intent(this,HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
+                PendingIntent.FLAG_ONE_SHOT);
+
+        Notification notification = new NotificationCompat.Builder(this,MyFirebaseMessagingService.WAITLESS_ID)
+                .setSmallIcon(R.mipmap.waitless_logo)
+                .setContentTitle("WaitLess")
+                .setContentText("Welcome to Waitless")
+                .setAutoCancel(true)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setSound(defaultSoundUri)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+        //        .setContentIntent(pendingIntent)                  //as this just login notif hence disappears after 5 sec so no intent required
+                .build();
+        notificationManagerCompat.notify(1,notification);
+
+        Handler h = new Handler();
+        long delayInMilliseconds = 5000;
+        h.postDelayed(new Runnable() {
+            public void run() {
+                notificationManagerCompat.cancel(1);
+            }
+        }, delayInMilliseconds);
+
     }
 
     @Override
