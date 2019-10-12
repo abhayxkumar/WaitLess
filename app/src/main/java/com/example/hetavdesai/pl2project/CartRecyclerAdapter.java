@@ -105,6 +105,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         holder.nameAsString = mylist.getName();
         holder.priceAsInt = mylist.getPrice();
         holder.quantityAsInt = mylist.getQuantity();
+        holder.usernameAsString = mylist.getUsername();
 
         gtotal += holder.priceAsInt * holder.quantityAsInt;
         cartTotal.setText(String.valueOf(gtotal));
@@ -120,9 +121,8 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
                 if (holder.quantityAsInt < 10) { // TODO: Change max count
                     holder.quantityAsInt++;
                     CartClass cartClass = new CartClass(holder.nameAsString, holder.priceAsInt, holder.quantityAsInt, holder.priceAsInt * holder.quantityAsInt, tableno, holder.orderid, holder.usernameAsString, gtotal);
-                    swipeFlag = false;
                     databaseReference.child("Cart").child(String.valueOf(tableno)).child(holder.orderid).setValue(cartClass);
-
+                    swipeFlag = false;
                 }
             }
         });
@@ -155,8 +155,8 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
                 if (holder.quantityAsInt > 1) {
                     holder.quantityAsInt--;
                     CartClass cartClass = new CartClass(holder.nameAsString, holder.priceAsInt, holder.quantityAsInt, holder.priceAsInt * holder.quantityAsInt, tableno, holder.orderid, holder.usernameAsString,gtotal);
-                    swipeFlag = false;
                     databaseReference.child("Cart").child(String.valueOf(tableno)).child(holder.orderid).setValue(cartClass);
+                    swipeFlag = false;
 //                    total -= holder.priceAsInt * holder.quantityAsInt;
 //                    cartTotal.setText(String.valueOf(total));
 //                    holder.dishTotalAsInt = holder.priceAsInt * holder.quantityAsInt;

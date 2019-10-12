@@ -244,6 +244,14 @@ public class MiniGamesActivity extends AppCompatActivity {
                                 Intent intent6 = new Intent("com.example.hetavdesai.pl2project.MyReservationsActivity");
                                 startActivity(intent6);
                                 break;
+                            case R.id.nav_my_order:
+                                Intent intent7 = new Intent("com.example.hetavdesai.pl2project.MyOrdersActivity");
+                                startActivity(intent7);
+                                break;
+                            case R.id.nav_invoice:
+                                Intent intent8 = new Intent("com.example.hetavdesai.pl2project.InvoiceActivity");
+                                startActivity(intent8);
+                                break;
                             case R.id.nav_sign_out:
                                 signOut();
                                 break;
