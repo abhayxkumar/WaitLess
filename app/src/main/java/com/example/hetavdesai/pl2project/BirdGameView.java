@@ -90,7 +90,6 @@ public class BirdGameView extends View {
 
         bird[0] = BitmapFactory.decodeResource(getResources(), R.drawable.birdgame_bird1);
         bird[1] = BitmapFactory.decodeResource(getResources(), R.drawable.birdgame_bird2);
-        blue_ball = BitmapFactory.decodeResource(getResources(),R.drawable.bullet_ball_blue);
 
         bluePaint.setColor(Color.BLUE);
        // bluePaint.setShadowLayer(5, 0, 0, Color.BLUE);
