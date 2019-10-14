@@ -16,6 +16,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -54,6 +55,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkAppTheme);
+        }
+        else
+            setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         // set the view now
         setContentView(R.layout.activity_login);

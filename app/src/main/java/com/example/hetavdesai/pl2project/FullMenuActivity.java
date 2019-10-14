@@ -6,15 +6,19 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,7 +62,7 @@ public class FullMenuActivity extends AppCompatActivity {
     FMRecyclerAdapter fmRecyclerAdapter;
     private DrawerLayout mDrawerLayout;
     private MenuItem item;
-    private ImageButton nav_drawer;
+    private ImageButton nav_drawer,buttonCart;
     private FirebaseAuth auth;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
@@ -67,11 +71,52 @@ public class FullMenuActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     TextView itemCount;
     public static ImageView catImage;
+    private NavigationView navigationView;
+    private Menu menu;
+    SwitchCompat homeSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkAppTheme);
+        }
+        else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_menu);
+
+        buttonCart = findViewById(R.id.btn_cart);
+        nav_drawer = findViewById(R.id.navbtn);
+        navigationView = findViewById(R.id.nav_view);
+        menu = navigationView.getMenu();
+        navigationView.setItemIconTintList(null);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            nav_drawer.setBackgroundResource(R.drawable.menu_dark);
+            buttonCart.setBackgroundResource(R.drawable.cart_dark);
+            menu.findItem(R.id.nav_home).setIcon(R.drawable.home_dark);
+            menu.findItem(R.id.nav_game).setIcon(R.drawable.game_dark);
+            menu.findItem(R.id.nav_full_menu).setIcon(R.drawable.menu_dark);
+            menu.findItem(R.id.nav_book_table).setIcon(R.drawable.clock_dark);
+            menu.findItem(R.id.nav_my_res).setIcon(R.drawable.reserve_dark);
+            menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_dark);
+            menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_dark);
+            menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_dark);
+
+        }
+        else {
+            nav_drawer.setBackgroundResource(R.drawable.menu_light);
+            buttonCart.setBackgroundResource(R.drawable.cart_light);
+            menu.findItem(R.id.nav_home).setIcon(R.drawable.home_light);
+            menu.findItem(R.id.nav_game).setIcon(R.drawable.game_light);
+            menu.findItem(R.id.nav_full_menu).setIcon(R.drawable.menu_light);
+            menu.findItem(R.id.nav_book_table).setIcon(R.drawable.clock_light);
+            menu.findItem(R.id.nav_my_res).setIcon(R.drawable.reserve_light);
+            menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_light);
+            menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_light);
+            menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_light);
+        }
 
         fmRecyclerAdapter = new FMRecyclerAdapter(list, FullMenuActivity.this);
 //        catImage = findViewById(R.id.cat_image_view);
@@ -204,7 +249,7 @@ public class FullMenuActivity extends AppCompatActivity {
                 }
         );
 
-        final View buttonCart = findViewById(R.id.btn_cart);
+        buttonCart = findViewById(R.id.btn_cart);
         buttonCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

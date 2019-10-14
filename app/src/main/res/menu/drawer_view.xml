@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group
         android:id="@+id/menu_top"
@@ -7,39 +8,44 @@
 
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/menu_home"
             android:title="@string/home" />
 
         <item
             android:id="@+id/nav_full_menu"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
-            android:title="@string/menu" />
+            android:icon="@drawable/menu_light"
+            android:title="@string/menu"/>
 
         <item
             android:id="@+id/nav_game"
-            android:icon="@drawable/menu_game"
+            android:icon="@drawable/game_light"
             android:title="@string/miniGames" />
 
         <item
             android:id="@+id/nav_book_table"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:icon="@drawable/clock_light"
             android:title="@string/book_table" />
 
         <item
             android:id="@+id/nav_my_res"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:icon="@drawable/reserve_light"
             android:title="@string/my_res" />
 
         <item
             android:id="@+id/nav_my_order"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:icon="@drawable/order_light"
             android:title="My Orders" />
 
         <item
             android:id="@+id/nav_invoice"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:icon="@drawable/invoice_light"
             android:title="Invoice" />
 
+        <item
+            android:id="@+id/nav_toggle"
+            android:icon="@drawable/ic_check_circle_36dp"
+            android:title="Dark Theme"/>
+
+<!--        app:actionLayout="@layout/layout_switch"-->
 
     </group>
 
@@ -50,6 +56,8 @@
         <item
             android:id="@+id/nav_sign_out"
             android:icon="@android:drawable/ic_lock_power_off"
+            android:iconTint="@color/white"
+            android:iconTintMode="multiply"
             android:title="@string/sign_out" />
 
     </group>

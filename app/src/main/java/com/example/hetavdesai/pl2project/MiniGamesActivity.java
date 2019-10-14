@@ -1,11 +1,16 @@
 package com.example.hetavdesai.pl2project;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Gravity;
@@ -218,12 +223,10 @@ public class MiniGamesActivity extends AppCompatActivity {
                             case R.id.nav_home:
                                 Intent intent1 = new Intent("com.example.hetavdesai.pl2project.HomeActivity");
                                 startActivity(intent1);
-                                finish();
                                 break;
                             case R.id.nav_profile:
                                 Intent intent2 = new Intent("com.example.hetavdesai.pl2project.MainActivity");
                                 startActivity(intent2);
-                                finish();
                                 break;
                             case R.id.nav_game:
                                 Intent intent3 = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
@@ -232,31 +235,25 @@ public class MiniGamesActivity extends AppCompatActivity {
                             case R.id.nav_full_menu:
                                 Intent intent4 = new Intent("com.example.hetavdesai.pl2project.FullMenuActivity");
                                 startActivity(intent4);
-                                finish();
                                 break;
                             case R.id.nav_book_table:
                                 Intent intent5 = new Intent("com.example.hetavdesai.pl2project.ReservationActivity");
                                 startActivity(intent5);
-                                finish();
                                 break;
                             case R.id.nav_my_res:
                                 Intent intent6 = new Intent("com.example.hetavdesai.pl2project.MyReservationsActivity");
                                 startActivity(intent6);
-                                finish();
                                 break;
                             case R.id.nav_my_order:
                                 Intent intent7 = new Intent("com.example.hetavdesai.pl2project.MyOrdersActivity");
                                 startActivity(intent7);
-                                finish();
                                 break;
                             case R.id.nav_invoice:
                                 Intent intent8 = new Intent("com.example.hetavdesai.pl2project.InvoiceActivity");
                                 startActivity(intent8);
-                                finish();
                                 break;
                             case R.id.nav_sign_out:
                                 signOut();
-                                finish();
                                 break;
                         }
                         // Add code here to update the UI based on the item selected

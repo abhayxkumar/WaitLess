@@ -15,14 +15,18 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,13 +62,14 @@ public class HomeActivity extends AppCompatActivity {
     public FirebaseAuth.AuthStateListener authStateListener;
     TextView nav_username,nav_email;
     CircularImageView nav_image;
+    SwitchCompat homeSwitch;
     ScannedBarcodeActivity scannedBarcodeActivity;
 
     private static final int REQUEST_CAMERA_PERMISSION = 201;
 
     private DrawerLayout mDrawerLayout;
     private MenuItem item;
-    private ImageButton nav_drawer, buttonCart;
+    private ImageButton nav_drawer,buttonCart;
     private Button barcodeScan;
     private FirebaseAuth auth;
     private FirebaseDatabase mFirebaseDatabase;
@@ -76,6 +81,9 @@ public class HomeActivity extends AppCompatActivity {
     private SensorManager mSensorManager;
     private ShakeListener mSensorListener;
     private RecyclerView homeFoodRecycler;
+    private NavigationView navigationView;
+    private Menu menu;
+    private MenuItem menuItem;
 
     List<CartClass> listNew;
     Context context;
@@ -85,10 +93,67 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkAppTheme);
+        }
+        else {
+            setTheme(R.style.AppTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         buttonCart = findViewById(R.id.btn_cart);
+        nav_drawer = findViewById(R.id.navbtn);
+        navigationView = findViewById(R.id.nav_view);
+        menu = navigationView.getMenu();
+        navigationView.setItemIconTintList(null);
 
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            nav_drawer.setBackgroundResource(R.drawable.menu_dark);
+            buttonCart.setBackgroundResource(R.drawable.cart_dark);
+            menu.findItem(R.id.nav_home).setIcon(R.drawable.home_dark);
+            menu.findItem(R.id.nav_game).setIcon(R.drawable.game_dark);
+            menu.findItem(R.id.nav_full_menu).setIcon(R.drawable.menu_dark);
+            menu.findItem(R.id.nav_book_table).setIcon(R.drawable.clock_dark);
+            menu.findItem(R.id.nav_my_res).setIcon(R.drawable.reserve_dark);
+            menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_dark);
+            menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_dark);
+            menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_dark);
+
+        }
+        else {
+            nav_drawer.setBackgroundResource(R.drawable.menu_light);
+            buttonCart.setBackgroundResource(R.drawable.cart_light);
+            menu.findItem(R.id.nav_home).setIcon(R.drawable.home_light);
+            menu.findItem(R.id.nav_game).setIcon(R.drawable.game_light);
+            menu.findItem(R.id.nav_full_menu).setIcon(R.drawable.menu_light);
+            menu.findItem(R.id.nav_book_table).setIcon(R.drawable.clock_light);
+            menu.findItem(R.id.nav_my_res).setIcon(R.drawable.reserve_light);
+            menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_light);
+            menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_light);
+            menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_light);
+        }
+
+        homeSwitch = findViewById(R.id.home_switch);
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            homeSwitch.setChecked(true);
+        }
+        homeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                }
+                else
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                }
+            }
+        });
         //scannedBarcodeActivity = new ScannedBarcodeActivity();
 
         if (cart_size == 0) {
@@ -182,7 +247,7 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerLayout = findViewById(R.id.drawer_layout);
         // final ImageButton nav_drawer = (ImageButton)findViewById(R.id.nav_drawer);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -228,6 +293,21 @@ public class HomeActivity extends AppCompatActivity {
                                 break;
                             case R.id.nav_sign_out:
                                 signOut();
+                                break;
+                            case R.id.nav_toggle:
+                                setTheme(R.style.DarkAppTheme);
+//                                SwitchCompat switchCompat;
+//                                CompoundButton compoundButton;
+//                                switchCompat = findViewById(R.id.nav_theme_toggle);
+//                                switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                                    @Override
+//                                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                                        if(isChecked)
+//                                            setTheme(R.style.DarkAppTheme);
+//                                        else
+//                                            setTheme(R.style.AppTheme);
+//                                    }
+//                                });
                                 break;
                         }
                         return true;

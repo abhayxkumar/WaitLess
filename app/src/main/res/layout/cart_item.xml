@@ -5,27 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="3dp"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="1dp"
-        card_view:cardCornerRadius="6dp">
+        card_view:cardCornerRadius="10dp"
+        android:layout_weight="0.4"
+        android:background="?attr/cardbackground">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:background="?attr/cardbackground">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="10dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/dish_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pizza"/>
+
+            </android.support.v7.widget.CardView>
 
             <LinearLayout
                 android:id="@+id/main_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_weight="0.4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -41,8 +60,9 @@
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
                         android:text="Item Name"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        android:textColor="?attr/textcolor"
+                        android:textSize="16sp"
+                        android:layout_gravity="center_vertical"/>
 
                     <Button
                         android:id="@+id/minus_quantity"
@@ -51,22 +71,28 @@
                         android:background="@null"
                         android:text="-"
                         android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:textColor="?attr/textcolor"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_vertical"/>
 
                     <TextView
                         android:id="@+id/quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1" />
+                        android:textColor="?attr/textcolor"
+                        android:text="1"
+                        android:layout_gravity="center_vertical"/>
 
                     <Button
                         android:id="@+id/add_quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:textColor="?attr/textcolor"
                         android:text="+"
                         android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_gravity="center_vertical"/>
 
                 </LinearLayout>
 
@@ -91,11 +117,13 @@
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp">
 
-                    <ImageView
+                    <TextView
                         android:layout_width="10dp"
-                        android:layout_height="10dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        app:srcCompat="@drawable/rupee" />
+                        android:layout_marginBottom="1dp"
+                        android:text="₹"
+                        android:textColor="?attr/lighttextcolor"/>
 
                     <TextView
                         android:id="@+id/dish_price"
@@ -104,13 +132,16 @@
                         android:layout_marginLeft="2dp"
                         android:layout_marginBottom="1dp"
                         android:layout_weight="1"
+                        android:textColor="?attr/lighttextcolor"
                         android:text="499" />
 
-                    <ImageView
+                    <TextView
                         android:layout_width="10dp"
-                        android:layout_height="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
                         android:layout_gravity="center_vertical"
-                        app:srcCompat="@drawable/rupee" />
+                        android:textColor="?attr/lighttextcolor"
+                        android:text="₹"/>
 
                     <TextView
                         android:id="@+id/dish_total"
@@ -119,6 +150,7 @@
                         android:layout_marginLeft="2dp"
                         android:layout_marginBottom="1dp"
                         android:layout_weight="0.08"
+                        android:textColor="?attr/lighttextcolor"
                         android:text="499" />
                 </LinearLayout>
             </LinearLayout>

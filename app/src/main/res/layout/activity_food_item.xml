@@ -20,8 +20,7 @@
             android:layout_height="36dp"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:accessibilityHeading="true"
-            android:background="@null"
-            app:srcCompat="@drawable/nav_menu" />
+            android:background="@null" />
 
 
         <TextView
@@ -100,7 +99,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_view">
+        app:menu="@menu/drawer_view"
+        android:background="?attr/backgroundcolor"
+        app:itemTextColor="?attr/textcolor">
 
     </android.support.design.widget.NavigationView>
 

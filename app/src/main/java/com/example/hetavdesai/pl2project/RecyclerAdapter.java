@@ -1,5 +1,6 @@
 package com.example.hetavdesai.pl2project;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -269,20 +270,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                 databaseReference2 = FirebaseDatabase.getInstance().getReference();
                 Query checkIfExists = databaseReference2.child("Cart").child(String.valueOf(tableno)).orderByChild("name").equalTo(holder.viewname);
                 checkIfExists.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                             if (!dataSnapshot.exists()) {
                                 holder.addToCartText.setText("ADD");
-                                holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
-                                holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+//                                holder.addToCart.setCardBackgroundColor(R.attr.cardbackground);
+//                                holder.addToCartText.setBackgroundColor(R.attr.cardbackground);
+//                                holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
                                 holder.addToCart.setEnabled(true);
                                 flag[0] = 1;
                             } else {
                                 holder.addToCartText.setText("ADDED");
-                                holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-                                holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.white));
+//                                holder.addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+//                                holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+//                                holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.white));
                                 holder.addToCart.setEnabled(false);
                                 flag[0] = 1;
                             }
@@ -290,8 +294,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 
                         if (flag[0] == 0) {
                             holder.addToCartText.setText("ADD");
-                            holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
-                            holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+//                            holder.addToCart.setCardBackgroundColor(R.attr.cardbackground);
+//                            holder.addToCartText.setBackgroundColor(R.attr.cardbackground);
+//                            holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
                             holder.addToCart.setEnabled(true);
                         }
 
@@ -369,8 +374,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                                 swipeFlag = false;
                                 databaseReference2.child("Cart").child(String.valueOf(tableno)).child(key).setValue(cartClass);
                                 holder.addToCartText.setText("ADDED");
-                                holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-                                holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.white));
+//                                holder.addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+//                                holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+//                                holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.white));
                                 holder.addToCart.setEnabled(false);
                             }
                             flag[0] = 1;
@@ -382,8 +388,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                             swipeFlag = false;
                             databaseReference2.child("Cart").child(String.valueOf(tableno)).child(key).setValue(cartClass);
                             holder.addToCartText.setText("ADDED");
-                            holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-                            holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.white));
+//                            holder.addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+//                            holder.addToCart.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+//                            holder.addToCartText.setTextColor(ContextCompat.getColor(context, R.color.white));
                             holder.addToCart.setEnabled(false);
                         }
                     }

@@ -75,6 +75,189 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         quantityCount = 1;
 
 
+        switch(mylist.getName()) {
+            case "Margherita Pizza":
+                holder.dishImage.setImageResource(R.drawable.pizza01);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.pizza);
+                break;
+
+            case "Peppy Paneer Pizza":
+                holder.dishImage.setImageResource(R.drawable.pizza02);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.dessert);
+                break;
+
+            case "Farmhouse Pizza":
+                holder.dishImage.setImageResource(R.drawable.pizza03);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.burger);
+                break;
+
+            case "BBQ Chicken Pizza":
+                holder.dishImage.setImageResource(R.drawable.pizza04);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.soup);
+                break;
+
+            case "Tandoori Chicken Pizza":
+                holder.dishImage.setImageResource(R.drawable.pizza05);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.biryani);
+                break;
+
+            case "Cheese Burger":
+                holder.dishImage.setImageResource(R.drawable.burger01);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.pizza);
+                break;
+
+            case "American Chilly Burger":
+                holder.dishImage.setImageResource(R.drawable.burger02);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.dessert);
+                break;
+
+            case "Spicy Paneer Burger":
+                holder.dishImage.setImageResource(R.drawable.burger03);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.burger);
+                break;
+
+            case "Veg Tikka Burger":
+                holder.dishImage.setImageResource(R.drawable.burger04);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.soup);
+                break;
+
+            case "Spicy Meat Burger":
+                holder.dishImage.setImageResource(R.drawable.burger05);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.biryani);
+                break;
+
+            case "Veg Biryani":
+                holder.dishImage.setImageResource(R.drawable.biryani01);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.pizza);
+                break;
+
+            case "Paneer Biryani":
+                holder.dishImage.setImageResource(R.drawable.biryani02);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.dessert);
+                break;
+
+            case "Chicken Tikka Biryani":
+                holder.dishImage.setImageResource(R.drawable.biryani03);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.burger);
+                break;
+
+            case "Chicken Dum Biryani":
+                holder.dishImage.setImageResource(R.drawable.biryani04);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.soup);
+                break;
+
+            case "Mutton Biryani":
+                holder.dishImage.setImageResource(R.drawable.biryani05);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.biryani);
+                break;
+
+            case "Ice Cream":
+                holder.dishImage.setImageResource(R.drawable.dessert01);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.pizza);
+                break;
+
+            case "Waffle":
+                holder.dishImage.setImageResource(R.drawable.dessert02);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.dessert);
+                break;
+
+            case "Milkshake":
+                holder.dishImage.setImageResource(R.drawable.dessert03);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.burger);
+                break;
+
+            case "Chocolate pastry":
+                holder.dishImage.setImageResource(R.drawable.dessert04);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.soup);
+                break;
+
+            case "Gulab Jamun":
+                holder.dishImage.setImageResource(R.drawable.dessert05);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.biryani);
+                break;
+
+            case "Mac n Cheese":
+                holder.dishImage.setImageResource(R.drawable.pasta01);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.pizza);
+                break;
+
+            case "Chicken Arabiata Pasta":
+                holder.dishImage.setImageResource(R.drawable.pasta02);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.dessert);
+                break;
+
+            case "Chicken Cream Cheese Pasta":
+                holder.dishImage.setImageResource(R.drawable.pasta03);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.burger);
+                break;
+
+            case "Mushroom Pesto Pasta":
+                holder.dishImage.setImageResource(R.drawable.pasta04);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.soup);
+                break;
+
+            case "Veg Alfredo Pasta":
+                holder.dishImage.setImageResource(R.drawable.pasta05);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.biryani);
+                break;
+
+            case "Veg Clear Soup":
+                holder.dishImage.setImageResource(R.drawable.soup01);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.pizza);
+                break;
+
+            case "Non-Veg Clear Soup":
+                holder.dishImage.setImageResource(R.drawable.soup02);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.dessert);
+                break;
+
+            case "Veg Manchow Soup":
+                holder.dishImage.setImageResource(R.drawable.soup03);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.burger);
+                break;
+
+            case "Non-Veg Manchow Soup":
+                holder.dishImage.setImageResource(R.drawable.soup04);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.soup);
+                break;
+
+            case "Spicy Seafood Soup":
+                holder.dishImage.setImageResource(R.drawable.soup05);
+                holder.dishImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                holder.fullMenuCardItem.setBackgroundResource(R.drawable.biryani);
+                break;
+        }
+
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(context);
@@ -194,6 +377,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         Button addquantity, minusquantity;
         String orderid, nameAsString, usernameAsString;
         int priceAsInt, quantityAsInt, dishTotalAsInt;
+        ImageView dishImage;
 
         public MyHoder(View view) {
             super(view);
@@ -203,6 +387,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
             quantity = itemView.findViewById(R.id.quantity);
             addquantity = itemView.findViewById(R.id.add_quantity);
             minusquantity = itemView.findViewById(R.id.minus_quantity);
+            dishImage = itemView.findViewById(R.id.dish_image);
         }
     }
 

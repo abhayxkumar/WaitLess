@@ -19,9 +19,7 @@
             android:layout_height="36dp"
             android:layout_margin="16dp"
             android:accessibilityHeading="true"
-            android:background="@null"
-            app:srcCompat="@drawable/nav_menu"
-            android:backgroundTint="@color/white"/>
+            android:background="@null" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -96,7 +94,8 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_view"
-        app:itemTextColor="@color/colorPrimaryDark">
+        android:background="?attr/backgroundcolor"
+        app:itemTextColor="?attr/textcolor">
 
     </android.support.design.widget.NavigationView>
 
