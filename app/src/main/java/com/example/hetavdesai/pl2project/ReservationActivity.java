@@ -255,9 +255,13 @@ public class ReservationActivity extends AppCompatActivity {
         final TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                Calendar c = Calendar.getInstance();
                 myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 myCalendar.set(Calendar.MINUTE, minute);
-                updateTimeLabel();
+                if(myCalendar.getTimeInMillis() >= c.getTimeInMillis())
+                    updateTimeLabel();
+                else
+                    Toast.makeText(ReservationActivity.this, "Invalid Time Selection", Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -267,6 +271,7 @@ public class ReservationActivity extends AppCompatActivity {
                 TimePickerDialog timePickerDialog;
                 timePickerDialog = new TimePickerDialog(ReservationActivity.this, time, myCalendar.get(Calendar.HOUR_OF_DAY), myCalendar.get(Calendar.MINUTE), false);
                 Date currentTime = Calendar.getInstance().getTime();
+
                 timePickerDialog.show();
             }
         });

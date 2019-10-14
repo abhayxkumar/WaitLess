@@ -4,8 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@color/white">
+    android:fitsSystemWindows="true">
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
 
@@ -14,7 +13,7 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="?attr/backgroundcolor">
 
         <ImageButton
             android:id="@+id/navbtn"
@@ -35,7 +34,7 @@
             android:text="Welcome, Home"
             android:textSize="25dp"
             android:fontFamily="@font/montesrat"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="?attr/textcolor"
             android:letterSpacing="0.1"/>
 
 
@@ -43,12 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:background="?attr/backgroundcolor"
             android:gravity="right">
 
             <RelativeLayout
                 android:id="@+id/relative_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="?attr/backgroundcolor">
 
                 <ImageButton
                     android:id="@+id/btn_cart"
@@ -70,7 +71,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/item_count"
                 android:gravity="center"
-                android:textColor="#FFF"
+                android:textColor="?attr/textcolor"
                 android:textSize="10sp"
                 android:textStyle="bold" />
 
@@ -79,13 +80,15 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize">
+            android:layout_marginTop="?attr/actionBarSize"
+            android:background="?attr/backgroundcolor">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="?attr/backgroundcolor">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -95,289 +98,305 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/home_popular"
                     android:textSize="20dp"
+                    android:textColor="?attr/textcolor"
                     android:fontFamily="@font/montesrat"/>
 
-                <HorizontalScrollView
+<!--                <HorizontalScrollView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:scrollbars="none">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--                            android:layout_width="240dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="20dp"-->
+<!--                            android:layout_marginTop="30dp"-->
+<!--                            android:layout_marginRight="20dp"-->
+<!--                            android:layout_marginBottom="60dp"-->
+<!--                            card_view:cardCornerRadius="10dp"-->
+<!--                            card_view:cardElevation="30dp"-->
+<!--                            android:elevation="4dp"-->
+<!--                            android:background="?attr/backgroundcolor">-->
+
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:elevation="4dp">-->
+
+<!--                                <android.support.v7.widget.CardView-->
+<!--                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    card_view:cardCornerRadius="10dp">-->
+
+<!--                                    <ImageView-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="180dp"-->
+<!--                                        android:scaleType="centerCrop"-->
+<!--                                        android:adjustViewBounds="true"-->
+<!--                                        app:srcCompat="@drawable/pizza"/>-->
+
+<!--                                </android.support.v7.widget.CardView>-->
+
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_marginLeft="10dp"-->
+<!--                                    android:layout_marginRight="10dp"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="Tandoori Paneer Pizza"-->
+<!--                                    android:textSize="14dp"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    android:fontFamily="@font/montesrat"-->
+<!--                                    android:letterSpacing="0.05"-->
+<!--                                    android:textAllCaps="true"/>-->
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_marginLeft="10dp"-->
+<!--                                    android:layout_marginRight="10dp"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="@string/temporary_description"-->
+<!--                                    android:fontFamily="@font/montesrat" />-->
+
+<!--                                <Button-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="right"-->
+<!--                                    android:layout_margin="10dp"-->
+<!--                                    android:background="@null"-->
+<!--                                    android:text="@string/order_button"-->
+<!--                                    android:textColor="@color/colorPrimary" />-->
+
+<!--                            </LinearLayout>-->
+
+<!--                        </android.support.v7.widget.CardView>-->
+
+<!--                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--                            android:layout_width="240dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="20dp"-->
+<!--                            android:layout_marginTop="30dp"-->
+<!--                            android:layout_marginRight="20dp"-->
+<!--                            android:layout_marginBottom="50dp"-->
+<!--                            card_view:cardCornerRadius="10dp"-->
+<!--                            card_view:cardElevation="30dp"-->
+<!--                            android:padding="50dp"-->
+<!--                            card_view:cardBackgroundColor="@color/white">-->
+
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:background="?attr/cardbackground">-->
+
+<!--                                <android.support.v7.widget.CardView-->
+<!--                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+
+<!--                                    card_view:cardCornerRadius="10dp">-->
+
+<!--                                    <ImageView-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="180dp"-->
+<!--                                        android:scaleType="centerCrop"-->
+<!--                                        android:adjustViewBounds="true"-->
+<!--                                        app:srcCompat="@drawable/burger"/>-->
+
+<!--                                </android.support.v7.widget.CardView>-->
+
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_marginLeft="10dp"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="Spicy Paneer Burger"-->
+<!--                                    android:textSize="14dp"-->
+<!--                                    android:textColor="?attr/textcolor"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    android:letterSpacing="0.05"-->
+<!--                                    android:textAllCaps="true"/>-->
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:textColor="?attr/lighttextcolor"-->
+<!--                                    android:layout_marginLeft="10dp"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="@string/temporary_description" />-->
+
+<!--                                <Button-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="right"-->
+<!--                                    android:layout_margin="10dp"-->
+<!--                                    android:background="@null"-->
+<!--                                    android:text="@string/order_button"-->
+<!--                                    android:textColor="@color/colorPrimary" />-->
+
+<!--                            </LinearLayout>-->
+
+<!--                        </android.support.v7.widget.CardView>-->
+
+<!--                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--                            android:layout_width="240dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="20dp"-->
+<!--                            android:layout_marginTop="30dp"-->
+<!--                            android:layout_marginRight="20dp"-->
+<!--                            android:layout_marginBottom="50dp"-->
+<!--                            card_view:cardCornerRadius="10dp"-->
+<!--                            card_view:cardElevation="30dp"-->
+<!--                            android:padding="50dp"-->
+<!--                            card_view:cardBackgroundColor="@color/white">-->
+
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="vertical">-->
+
+<!--                                <android.support.v7.widget.CardView-->
+<!--                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+
+<!--                                    card_view:cardCornerRadius="10dp">-->
+
+<!--                                    <ImageView-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="180dp"-->
+<!--                                        android:scaleType="centerCrop"-->
+<!--                                        android:adjustViewBounds="true"-->
+<!--                                        app:srcCompat="@drawable/dessert"/>-->
+
+<!--                                </android.support.v7.widget.CardView>-->
+
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_marginLeft="10dp"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="Choco Oreo Sundae"-->
+<!--                                    android:textSize="14dp"-->
+<!--                                    android:textColor="@color/colorPrimaryDark"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    android:letterSpacing="0.05"-->
+<!--                                    android:textAllCaps="true"/>-->
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_marginLeft="10dp"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="@string/temporary_description" />-->
+
+<!--                                <Button-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="right"-->
+<!--                                    android:layout_margin="10dp"-->
+<!--                                    android:background="@null"-->
+<!--                                    android:text="@string/order_button"-->
+<!--                                    android:textColor="@color/colorPrimary"/>-->
+
+<!--                            </LinearLayout>-->
+
+<!--                        </android.support.v7.widget.CardView>-->
+
+<!--                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--                            android:layout_width="240dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="20dp"-->
+<!--                            android:layout_marginTop="30dp"-->
+<!--                            android:layout_marginRight="20dp"-->
+<!--                            android:layout_marginBottom="50dp"-->
+<!--                            card_view:cardCornerRadius="10dp"-->
+<!--                            card_view:cardElevation="30dp"-->
+<!--                            android:padding="50dp"-->
+<!--                            card_view:cardBackgroundColor="@color/white">-->
+
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="vertical">-->
+
+<!--                                <android.support.v7.widget.CardView-->
+<!--                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+
+<!--                                    card_view:cardCornerRadius="10dp">-->
+
+<!--                                    <ImageView-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="180dp"-->
+<!--                                        android:scaleType="centerCrop"-->
+<!--                                        android:adjustViewBounds="true"-->
+<!--                                        app:srcCompat="@drawable/dessert2"/>-->
+
+<!--                                </android.support.v7.widget.CardView>-->
+
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_marginLeft="10dp"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="Assorted Ice Creams"-->
+<!--                                    android:textSize="14dp"-->
+<!--                                    android:textColor="@color/colorPrimaryDark"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    android:letterSpacing="0.05"-->
+<!--                                    android:textAllCaps="true"/>-->
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_marginLeft="10dp"-->
+<!--                                    android:layout_marginTop="10dp"-->
+<!--                                    android:text="@string/temporary_description" />-->
+
+<!--                                <Button-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="right"-->
+<!--                                    android:layout_margin="10dp"-->
+<!--                                    android:background="@null"-->
+<!--                                    android:text="@string/order_button"-->
+<!--                                    android:textColor="@color/colorPrimary" />-->
+
+<!--                            </LinearLayout>-->
+
+<!--                        </android.support.v7.widget.CardView>-->
+
+
+<!--                    </LinearLayout>-->
+
+<!--                </HorizontalScrollView>-->
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scrollbars="none">
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/home_recycle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:paddingTop="20dp"/>
 
-                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="240dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginBottom="60dp"
-                            card_view:cardCornerRadius="10dp"
-                            card_view:cardElevation="30dp"
-                            card_view:cardBackgroundColor="@color/white">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <android.support.v7.widget.CardView
-                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    card_view:cardCornerRadius="10dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="180dp"
-                                        android:scaleType="centerCrop"
-                                        android:adjustViewBounds="true"
-                                        app:srcCompat="@drawable/pizza"/>
-
-                                </android.support.v7.widget.CardView>
-
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="Tandoori Paneer Pizza"
-                                    android:textSize="14dp"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/montesrat"
-                                    android:letterSpacing="0.05"
-                                    android:textAllCaps="true"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="@string/temporary_description"
-                                    android:fontFamily="@font/montesrat" />
-
-                                <Button
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
-                                    android:layout_margin="10dp"
-                                    android:background="@null"
-                                    android:text="@string/order_button"
-                                    android:textColor="@color/colorPrimary" />
-
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-
-                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="240dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginBottom="50dp"
-                            card_view:cardCornerRadius="10dp"
-                            card_view:cardElevation="30dp"
-                            android:padding="50dp"
-                            card_view:cardBackgroundColor="@color/white">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <android.support.v7.widget.CardView
-                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    card_view:cardCornerRadius="10dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="180dp"
-                                        android:scaleType="centerCrop"
-                                        android:adjustViewBounds="true"
-                                        app:srcCompat="@drawable/burger"/>
-
-                                </android.support.v7.widget.CardView>
-
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="Spicy Paneer Burger"
-                                    android:textSize="14dp"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textStyle="bold"
-                                    android:letterSpacing="0.05"
-                                    android:textAllCaps="true"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="@string/temporary_description" />
-
-                                <Button
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
-                                    android:layout_margin="10dp"
-                                    android:background="@null"
-                                    android:text="@string/order_button"
-                                    android:textColor="@color/colorPrimary" />
-
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-
-                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="240dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginBottom="50dp"
-                            card_view:cardCornerRadius="10dp"
-                            card_view:cardElevation="30dp"
-                            android:padding="50dp"
-                            card_view:cardBackgroundColor="@color/white">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <android.support.v7.widget.CardView
-                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    card_view:cardCornerRadius="10dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="180dp"
-                                        android:scaleType="centerCrop"
-                                        android:adjustViewBounds="true"
-                                        app:srcCompat="@drawable/dessert"/>
-
-                                </android.support.v7.widget.CardView>
-
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="Choco Oreo Sundae"
-                                    android:textSize="14dp"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textStyle="bold"
-                                    android:letterSpacing="0.05"
-                                    android:textAllCaps="true"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="@string/temporary_description" />
-
-                                <Button
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
-                                    android:layout_margin="10dp"
-                                    android:background="@null"
-                                    android:text="@string/order_button"
-                                    android:textColor="@color/colorPrimary"/>
-
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-
-                        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="240dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginBottom="50dp"
-                            card_view:cardCornerRadius="10dp"
-                            card_view:cardElevation="30dp"
-                            android:padding="50dp"
-                            card_view:cardBackgroundColor="@color/white">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <android.support.v7.widget.CardView
-                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    card_view:cardCornerRadius="10dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="180dp"
-                                        android:scaleType="centerCrop"
-                                        android:adjustViewBounds="true"
-                                        app:srcCompat="@drawable/dessert2"/>
-
-                                </android.support.v7.widget.CardView>
-
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="Assorted Ice Creams"
-                                    android:textSize="14dp"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textStyle="bold"
-                                    android:letterSpacing="0.05"
-                                    android:textAllCaps="true"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="@string/temporary_description" />
-
-                                <Button
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
-                                    android:layout_margin="10dp"
-                                    android:background="@null"
-                                    android:text="@string/order_button"
-                                    android:textColor="@color/colorPrimary" />
-
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-
-
-                    </LinearLayout>
-
-                </HorizontalScrollView>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnScanBarcode"
@@ -405,7 +424,9 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_view"
-        app:itemTextAppearance="@font/montesrat">
+        app:itemTextAppearance="@font/montesrat"
+        android:background="?attr/cardbackground"
+        app:itemTextColor="?attr/textcolor">
 
     </android.support.design.widget.NavigationView>
 

@@ -1,29 +1,30 @@
 package com.example.hetavdesai.pl2project;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.support.annotation.AnimatorRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -40,7 +41,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +49,6 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 import static com.example.hetavdesai.pl2project.CartActivity.tableno;
 import static com.example.hetavdesai.pl2project.CartRecyclerAdapter.cart_size;
 
@@ -60,18 +59,22 @@ public class HomeActivity extends AppCompatActivity {
     CircularImageView nav_image;
     ScannedBarcodeActivity scannedBarcodeActivity;
 
+    private static final int REQUEST_CAMERA_PERMISSION = 201;
+
     private DrawerLayout mDrawerLayout;
     private MenuItem item;
     private ImageButton nav_drawer, buttonCart;
     private Button barcodeScan;
     private FirebaseAuth auth;
     private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mDatabaseReference;
+    private DatabaseReference mDatabaseReference,myRef;
     private FirebaseUser mFirebaseUser;
     private GoogleSignInClient mGoogleSignInClient;
+    List<FoodClass> list;
     TextView itemCount;
     private SensorManager mSensorManager;
     private ShakeListener mSensorListener;
+    private RecyclerView homeFoodRecycler;
 
     List<CartClass> listNew;
     Context context;
@@ -85,7 +88,19 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         buttonCart = findViewById(R.id.btn_cart);
 
-        scannedBarcodeActivity = new ScannedBarcodeActivity();
+        //scannedBarcodeActivity = new ScannedBarcodeActivity();
+
+        if (cart_size == 0) {
+            buttonCart.setVisibility(View.GONE);
+        } else {
+            buttonCart.setVisibility(View.VISIBLE);
+        }
+
+            if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(HomeActivity.this, new
+                        String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+            }
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -120,11 +135,43 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
 
-        if (cart_size == 0) {
-            buttonCart.setVisibility(View.GONE);
-        } else {
-            buttonCart.setVisibility(View.VISIBLE);
-        }
+        homeFoodRecycler = findViewById(R.id.home_recycle);
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+
+        myRef = FirebaseDatabase.getInstance().getReference().child("Food").child("Dessert");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                list = new ArrayList<>();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                    FoodClass value = dataSnapshot1.getValue(FoodClass.class);
+                    FoodClass fire = new FoodClass();
+                    String name = value.getName();
+                    String description = value.getDescription();
+                    int price = value.getPrice();
+                    String Menuid = value.getMenuid();
+                    String cal = value.getCalories();
+                    fire.setName(name);
+                    fire.setDescription(description);
+                    fire.setPrice(price);
+                    fire.setMenuid(Menuid);
+                    fire.setCalories(cal);
+                    list.add(fire);
+                }
+
+                onActivityOpen();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Hello", "Failed to read value.", error.toException());
+            }
+        });
 
         nav_drawer.bringToFront();
 
@@ -179,9 +226,6 @@ public class HomeActivity extends AppCompatActivity {
                                 signOut();
                                 break;
                         }
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-
                         return true;
                     }
                 });
@@ -299,20 +343,20 @@ public class HomeActivity extends AppCompatActivity {
 
                             CartClass value = dataSnapshot1.getValue(CartClass.class);
                             CartClass fire = new CartClass();
-                            String name = value.getName();
-                            int price = value.getPrice();
-                            int quantity = value.getQuantity();
-                            int tableno = value.getTableno();
-                            int total = value.getTotal();
-                            String orderid = value.getOrderid();
-                            String username = value.getUsername();
-                            fire.setName(name);
-                            fire.setPrice(price);
-                            fire.setQuantity(quantity);
-                            fire.setTableno(tableno);
-                            fire.setTotal(total);
-                            fire.setOrderid(orderid);
-                            fire.setUsername(username);
+//                            String name = value.getName();
+//                            int price = value.getPrice();
+//                            int quantity = value.getQuantity();
+//                            int tableno = value.getTableno();
+//                            int total = value.getTotal();
+//                            String orderid = value.getOrderid();
+//                            String username = value.getUsername();
+//                            fire.setName(name);
+//                            fire.setPrice(price);
+//                            fire.setQuantity(quantity);
+//                            fire.setTableno(tableno);
+//                            fire.setTotal(total);
+//                            fire.setOrderid(orderid);
+//                            fire.setUsername(username);
                             listNew.add(fire);
                         }
 
@@ -340,8 +384,14 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-
+    public void onActivityOpen() {
+        HomeFoodRecyclerAdapter recyclerAdapter = new HomeFoodRecyclerAdapter(list, HomeActivity.this);
+        RecyclerView.LayoutManager recycleVariable = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        homeFoodRecycler.setLayoutManager(recycleVariable);
+        homeFoodRecycler.setItemAnimator(new DefaultItemAnimator());
+        homeFoodRecycler.setAdapter(recyclerAdapter);
     }
 
     @Override
@@ -363,9 +413,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
         auth.addAuthStateListener(authStateListener);
 
-        if (scannedBarcodeActivity.intentData.length() > 0) {
-            barcodeScan.setVisibility(View.GONE);
-        }
+//        if (scannedBarcodeActivity.intentData.length() > 0) {
+//            barcodeScan.setVisibility(View.GONE);
+//        }
     }
 
     @Override

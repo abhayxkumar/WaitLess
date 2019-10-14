@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="60dp"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="30dp"
+    android:background="?attr/cardbackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="?attr/cardbackground">
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            card_view:cardCornerRadius="10dp">
+
+            <ImageView
+                android:id="@+id/dish_image"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/pizza"/>
+
+        </android.support.v7.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Tandoori Paneer Pizza"
+            android:textSize="14dp"
+            android:textColor="?attr/textcolor"
+            android:textStyle="bold"
+            android:fontFamily="@font/montesrat"
+            android:letterSpacing="0.05"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:id="@+id/contentTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:textColor="?attr/lighttextcolor"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Dish Description"
+            android:fontFamily="@font/montesrat" />
+
+        <TextView
+            android:id="@+id/caloriesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="?attr/lighttextcolor"
+            android:text="Calories"
+            android:fontFamily="@font/montesrat" />
+
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="?attr/lighttextcolor"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Price"
+            android:fontFamily="@font/montesrat" />
+
+<!--        <Button-->
+<!--            android:id="@+id/add_to_cart"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:background="@null"-->
+<!--            android:text="@string/order_button"-->
+<!--            android:textColor="@color/colorPrimary" />-->
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/pre_add"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            app:cardCornerRadius="6dp"
+            android:layout_marginTop="5dp"
+            android:layout_margin="16dp"
+            android:background="?attr/cardbackground">
+
+            <FrameLayout
+                android:background="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/add_to_cart"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="1dp"
+                    app:cardCornerRadius="4dp"
+                    android:background="?attr/cardbackground">
+
+                    <TextView
+                        android:id="@+id/add_to_cart_text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:text="ADD TO CART"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:textSize="12dp"
+                        android:background="?attr/cardbackground"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/montesrat"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"/>
+
+                </android.support.v7.widget.CardView>
+
+            </FrameLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

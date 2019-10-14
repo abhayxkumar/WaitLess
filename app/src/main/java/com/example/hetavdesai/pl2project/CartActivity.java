@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +19,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -35,7 +35,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -57,6 +56,7 @@ public class CartActivity extends AppCompatActivity {
     RecyclerView recycle;
     CartClass value1, fire1;
     String itemName, itemPrice, itemQuantity, tableNo;
+    CardView scanQRButton;
     public static boolean swipeFlag;
     private DrawerLayout mDrawerLayout;
     private MenuItem item;
@@ -76,8 +76,8 @@ public class CartActivity extends AppCompatActivity {
 
         cartTotal = findViewById(R.id.cart_total);
         cartRupeeSymbol = findViewById(R.id.rupee_symbol);
-
         buttonText = findViewById(R.id.swipe_to_order);
+        scanQRButton = findViewById(R.id.scan_qr_button);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -272,6 +272,23 @@ public class CartActivity extends AppCompatActivity {
 
         final in.shadowfax.proswipebutton.ProSwipeButton proSwipeBtn = findViewById(R.id.proSwipeButton);
         proSwipeBtn.setSwipeDistance(0.9f);
+
+        if(!(tableno == 1001 || tableno == 1002 || tableno == 1003 || tableno == 1004)) {
+            proSwipeBtn.setVisibility(View.GONE);
+            scanQRButton.setVisibility(View.VISIBLE);
+            proSwipeBtn.setEnabled(false);
+        }
+        else{
+            scanQRButton.setVisibility(View.GONE);
+            proSwipeBtn.setVisibility(View.VISIBLE);
+        }
+
+        scanQRButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CartActivity.this, ScannedBarcodeActivity.class));
+            }
+        });
 
         proSwipeBtn.setOnSwipeListener(new in.shadowfax.proswipebutton.ProSwipeButton.OnSwipeListener() {
             @Override

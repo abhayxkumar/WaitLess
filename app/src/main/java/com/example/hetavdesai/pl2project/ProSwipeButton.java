@@ -114,6 +114,11 @@ public class ProSwipeButton extends RelativeLayout {
         view = inflater.inflate(R.layout.view_proswipebtn, this, true);
     }
 
+    public void setVisibility(int visibility)
+    {
+        super.setVisibility(visibility);
+    }
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();

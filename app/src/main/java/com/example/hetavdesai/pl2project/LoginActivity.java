@@ -195,10 +195,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             String key = acct.getId();
-            UserClass userClass = new UserClass(acct.getDisplayName(), null, acct.getEmail(), "customer", 0);
+            UserClass userClass = new UserClass(acct.getDisplayName(), null, acct.getEmail(), "customer", Integer.parseInt(acct.getId().substring(18)));
             databaseReference.child("users").child(key).setValue(userClass);
             UserNameClass userNameClass = new UserNameClass(acct.getDisplayName());
-            databaseReference.child("Table").child("0").child(acct.getId()).setValue(userNameClass);
+            databaseReference.child("Table").child(acct.getId().substring(18)).child(acct.getId()).setValue(userNameClass);
             finish();
 
         } else {

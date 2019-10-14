@@ -5,7 +5,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MiniGamesActivity">
+    tools:context=".MiniGamesActivity"
+    android:background="?attr/backgroundcolor">
 
 
     <FrameLayout
@@ -30,6 +31,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:text="Mini Games"
+            android:textColor="?attr/textcolor"
             android:textSize="25dp" />
 
 
@@ -92,7 +94,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="10dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="?attr/cardbackground">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -121,6 +124,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
+                            android:textColor="?attr/textcolor"
                             android:text="Highscore : 0" />
 
                         <TextView
@@ -128,6 +132,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:textColor="?attr/textcolor"
                             android:layout_marginBottom="10dp"
                             android:text="@string/highscore_name" />
 
@@ -189,7 +194,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="10dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="?attr/cardbackground">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -217,6 +223,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:textColor="?attr/textcolor"
                             android:layout_marginTop="10dp"
                             android:text="Highscore : 0" />
 
@@ -225,6 +232,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:textColor="?attr/textcolor"
                             android:layout_marginBottom="10dp"
                             android:text="@string/highscore_name"/>
 
@@ -277,7 +285,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="10dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="?attr/cardbackground">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -306,7 +315,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
-                            android:text="Highscore : 0" />
+                            android:text="Highscore : 0"
+                            android:textColor="?attr/textcolor"/>
 
                         <TextView
                             android:id="@+id/highscore_name3"
@@ -314,6 +324,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="10dp"
+                            android:textColor="?attr/textcolor"
                             android:text="@string/highscore_name"/>
 
                         <LinearLayout

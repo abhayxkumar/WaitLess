@@ -60,15 +60,21 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true">
+
             <in.shadowfax.proswipebutton.ProSwipeButton
                 android:id="@+id/proSwipeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_margin="20dp"
                 app:bg_color="@color/colorPrimary"
                 app:btn_radius="100"
-                app:btn_text="">
+                app:btn_text=""
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -108,6 +114,48 @@
                 </LinearLayout>
 
             </in.shadowfax.proswipebutton.ProSwipeButton>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/scan_qr_button"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                app:cardCornerRadius="6dp"
+                android:layout_margin="20dp"
+                app:cardBackgroundColor="@color/white"
+                android:visibility="gone">
+
+                <FrameLayout
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/white"
+                        android:layout_margin="1dp"
+                        app:cardCornerRadius="4dp">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:text="SCAN QR CODE TO JOIN TABLE"
+                            android:padding="5dp"
+                            android:gravity="center"
+                            android:textSize="20dp"
+                            android:textColor="@color/colorPrimary"
+                            android:fontFamily="@font/montesrat"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"/>
+
+                    </android.support.v7.widget.CardView>
+
+                </FrameLayout>
+            </android.support.v7.widget.CardView>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
