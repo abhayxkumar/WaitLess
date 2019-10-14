@@ -2,38 +2,25 @@ package com.example.hetavdesai.pl2project;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
-import static java.security.AccessController.getContext;
 
 
 public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecyclerAdapter.MyHoder> {
@@ -77,6 +64,9 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
         holder.orderTime.setText(mylist.getOrderTime());
         holder.tableNo.setText("Table " + String.valueOf(mylist.getTableNo()));
         holder.tableno = String.valueOf(mylist.getTableNo());
+        holder.orderIdToPass = mylist.getOrderId();
+
+       // Toast.makeText(context,holder.orderIdToPass,Toast.LENGTH_SHORT).show();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         Query mDatabaseReference = firebaseDatabase.getReference().child("Order Items").child(String.valueOf(holder.tableno));
@@ -127,6 +117,8 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
                 databaseReference.child("Order").child(String.valueOf(tableno)).removeValue();
                 databaseReference.child("Order Items").child(String.valueOf(tableno)).removeValue();
                 Intent intent = new Intent("com.example.hetavdesai.pl2project.InvoiceActivity");
+                intent.putExtra("orderidtopass",holder.orderIdToPass);
+              //  Toast.makeText(context,holder.orderIdToPass,Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
 
             }
@@ -156,7 +148,7 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
         TextView orderTotal, orderId,orderTime, tableNo;
         RecyclerView recyclerView;
         Button order_accept, order_decline;
-        String tableno;
+        String tableno, orderIdToPass;
         Button checkoutBtn;
 
 

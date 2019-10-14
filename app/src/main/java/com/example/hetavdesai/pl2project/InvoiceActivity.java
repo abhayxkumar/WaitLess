@@ -2,15 +2,11 @@ package com.example.hetavdesai.pl2project;
 
 import android.content.Context;
 import android.content.Intent;
-
-import android.os.Handler;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-
 import android.support.v4.widget.DrawerLayout;
-
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,12 +14,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -43,10 +37,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-
-import static com.example.hetavdesai.pl2project.CartClass.gtotal;
 
 
 public class InvoiceActivity extends AppCompatActivity {
@@ -79,6 +70,9 @@ public class InvoiceActivity extends AppCompatActivity {
     public static TextView grandtotal;
 
     public static String name;
+    //paytm
+    public String order_id,custid;
+    Button paytm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,14 +85,15 @@ public class InvoiceActivity extends AppCompatActivity {
                 .build();
 
         // Build a GoogleSignInClient with the options specified by gso.
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
         grandtotal = findViewById(R.id.grand_total);
         auth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference().child("users");
         mFirebaseUser = auth.getCurrentUser();
         nav_drawer = (ImageButton) findViewById(R.id.navbtn);
+        paytm = findViewById(R.id.paytm);
         nav_drawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +113,21 @@ public class InvoiceActivity extends AppCompatActivity {
                 }
             }
         };
+
+        //paytm link
+        Intent orderintent = getIntent();
+        order_id =  orderintent.getExtras().getString("orderidtopass");
+       // Toast.makeText(context, order_id, Toast.LENGTH_SHORT).show();
+        custid = acct.getId();
+        paytm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InvoiceActivity.this, checksum.class);
+                intent.putExtra("orderid",order_id);
+                intent.putExtra("custid",custid);
+                startActivity(intent);
+            }
+        });
 
 
         nav_drawer.bringToFront();
@@ -185,7 +195,6 @@ public class InvoiceActivity extends AppCompatActivity {
         nav_image = (CircularImageView) headerView.findViewById(R.id.nav_image);
         nav_email = (TextView)headerView.findViewById(R.id.nav_email);
 
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         nav_username.setText(acct.getDisplayName());
         nav_email.setText(acct.getEmail());
         Picasso.get().load(acct.getPhotoUrl()).into(nav_image);
