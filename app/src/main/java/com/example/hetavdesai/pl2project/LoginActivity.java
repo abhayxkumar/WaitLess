@@ -4,6 +4,8 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -214,10 +216,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 PendingIntent.FLAG_ONE_SHOT);
 
         Notification notification = new NotificationCompat.Builder(this,MyFirebaseMessagingService.WAITLESS_ID)
-                .setSmallIcon(R.mipmap.waitless_logo)
+                .setSmallIcon(R.drawable.waitless_logoai)
                 .setContentTitle("WaitLess")
+                .setColor(Color.parseColor("#d81b60"))
                 .setContentText("Welcome to Waitless")
                 .setAutoCancel(true)
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(),
+                        R.mipmap.waitless_logo))
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .setSound(defaultSoundUri)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

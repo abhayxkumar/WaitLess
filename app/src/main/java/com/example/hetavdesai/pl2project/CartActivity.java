@@ -1,11 +1,19 @@
 package com.example.hetavdesai.pl2project;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -18,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -68,11 +77,15 @@ public class CartActivity extends AppCompatActivity {
     private FirebaseUser mFirebaseUser;
     private GoogleSignInClient mGoogleSignInClient;
     public MessagingMain messagingMain;
+    NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+        //Notification Manager defined
+        notificationManagerCompat = NotificationManagerCompat.from(this);
 
         cartTotal = findViewById(R.id.cart_total);
         cartRupeeSymbol = findViewById(R.id.rupee_symbol);
@@ -335,6 +348,7 @@ public class CartActivity extends AppCompatActivity {
                         databaseReference.child("Cart").child(String.valueOf(tableno)).removeValue();
                         startActivity(new Intent(CartActivity.this, FullMenuActivity.class));
                         cartTotal.setText("0");
+                        sendLoginNotif();
                         proSwipeBtn.showResultIcon(true);
                     }
                 }, 2000);
@@ -367,6 +381,31 @@ public class CartActivity extends AppCompatActivity {
         recycle.setLayoutManager(recycleVariable);
         recycle.setItemAnimator(new DefaultItemAnimator());
         recycle.setAdapter(recyclerAdapter);
+    }
+
+    public void sendLoginNotif(){
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Intent intent = new Intent(this,MyOrdersActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
+                PendingIntent.FLAG_ONE_SHOT);
+
+        RemoteViews collapsedView = new RemoteViews(getPackageName(),R.layout.notification_order_collapsed);
+        RemoteViews expandedView = new RemoteViews(getPackageName(),R.layout.notification_order_expanded);
+
+
+        Notification notification = new NotificationCompat.Builder(this,MyFirebaseMessagingService.WAITLESS_ID)
+                .setSmallIcon(R.drawable.waitless_logoai)
+                .setCustomContentView(collapsedView)
+                .setCustomBigContentView(expandedView)
+                .setAutoCancel(true)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setSound(defaultSoundUri)
+               // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent)                  //as this just login notif hence disappears after 5 sec so no intent required
+                .build();
+        notificationManagerCompat.notify(1,notification);
     }
 
 
