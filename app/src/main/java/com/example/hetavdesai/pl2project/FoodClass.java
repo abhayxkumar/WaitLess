@@ -2,13 +2,13 @@ package com.example.hetavdesai.pl2project;
 
 public class FoodClass {
 
-    private String name, image, description, discount, menuid, calories;
+    private String name, image, description, discount, menuid, calories, popular, recommended;
     private int price;
 
     public FoodClass() {
     }
 
-    public FoodClass(String name, String image, String description, int price, String discount, String menuid, String calories) {
+    public FoodClass(String name, String image, String description, int price, String discount, String menuid, String calories, String popular, String recommended) {
         this.name = name;
         this.image = image;
         this.description = description;
@@ -16,6 +16,8 @@ public class FoodClass {
         this.discount = discount;
         this.menuid = menuid;
         this.calories = calories;
+        this.popular = popular;
+        this.recommended = recommended;
     }
 
     public String getName() {
@@ -56,6 +58,22 @@ public class FoodClass {
 
     public void setDiscount(String discount) {
         this.discount = discount;
+    }
+
+    public String getPopular() {
+        return popular;
+    }
+
+    public void setPopular(String popular) {
+        this.popular = popular;
+    }
+
+    public String getRecommended() {
+        return recommended;
+    }
+
+    public void setRecommended(String recommended) {
+        this.recommended = recommended;
     }
 
     public String getMenuid() {

@@ -230,6 +230,7 @@ public class InvoiceActivity extends AppCompatActivity {
                 intent.putExtra("orderid",order_id);
                 intent.putExtra("custid",custid);
                 startActivity(intent);
+                finish();
             }
         });
 

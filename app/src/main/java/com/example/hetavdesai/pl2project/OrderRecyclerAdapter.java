@@ -124,8 +124,9 @@ public class OrderRecyclerAdapter extends RecyclerView.Adapter<OrderRecyclerAdap
             @Override
             public void onClick(View v) {
                 databaseReference = FirebaseDatabase.getInstance().getReference();
-                databaseReference.child("Order Copy").child(String.valueOf(tableno)).removeValue();
-                databaseReference.child("Order Items Copy").child(String.valueOf(tableno)).removeValue();
+                databaseReference.child("Order Copy").child(holder.tableno).removeValue();
+                databaseReference.child("Order Items Copy").child(holder.tableno).removeValue();
+                Toast.makeText(context, holder.tableno, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -128,18 +128,21 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         Log.e("checksum ", " respon true " + bundle.toString());
         Intent intent = new Intent(checksum.this,HomeActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
     public void networkNotAvailable() {
         Intent intent = new Intent(checksum.this,InvoiceActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
     public void clientAuthenticationFailed(String s) {
         Intent intent = new Intent(checksum.this,InvoiceActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -147,6 +150,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         Log.e("checksum ", " ui fail respon  "+ s );
         Intent intent = new Intent(checksum.this,InvoiceActivity.class);
         startActivity(intent);
+        finish();
     }
 
 
@@ -155,6 +159,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         Log.e("checksum ", " error loading pagerespon true "+ s + "  s1 " + s1);
         Intent intent = new Intent(checksum.this,InvoiceActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -162,6 +167,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         Log.e("checksum ", " cancel call back respon  " );
         Intent intent = new Intent(checksum.this,InvoiceActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -169,6 +175,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         Log.e("checksum ", "  transaction cancel " );
         Intent intent = new Intent(checksum.this,InvoiceActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

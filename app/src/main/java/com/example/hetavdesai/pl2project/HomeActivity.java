@@ -76,11 +76,11 @@ public class HomeActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference,myRef;
     private FirebaseUser mFirebaseUser;
     private GoogleSignInClient mGoogleSignInClient;
-    List<FoodClass> list;
+    List<FoodClass> list, list2;
     TextView itemCount;
     private SensorManager mSensorManager;
     private ShakeListener mSensorListener;
-    private RecyclerView homeFoodRecycler;
+    private RecyclerView homeFoodRecycler, homeFoodRecycler2;
     private NavigationView navigationView;
     private Menu menu;
     private MenuItem menuItem;
@@ -148,11 +148,13 @@ public class HomeActivity extends AppCompatActivity {
                 {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    finish();
                 }
                 else
                 {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    finish();
                 }
             }
         });
@@ -205,9 +207,10 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         homeFoodRecycler = findViewById(R.id.home_recycle);
+        homeFoodRecycler2 = findViewById(R.id.home_recycle2);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
-        myRef = FirebaseDatabase.getInstance().getReference().child("Food").child("Dessert");
+        myRef = FirebaseDatabase.getInstance().getReference().child("Food");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -215,21 +218,32 @@ public class HomeActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 list = new ArrayList<>();
+                list2 = new ArrayList<>();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
-                    FoodClass value = dataSnapshot1.getValue(FoodClass.class);
-                    FoodClass fire = new FoodClass();
-                    String name = value.getName();
-                    String description = value.getDescription();
-                    int price = value.getPrice();
-                    String Menuid = value.getMenuid();
-                    String cal = value.getCalories();
-                    fire.setName(name);
-                    fire.setDescription(description);
-                    fire.setPrice(price);
-                    fire.setMenuid(Menuid);
-                    fire.setCalories(cal);
-                    list.add(fire);
+                    for(DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
+
+                        FoodClass value = dataSnapshot2.getValue(FoodClass.class);
+                        FoodClass fire = new FoodClass();
+                        String name = value.getName();
+                        String description = value.getDescription();
+                        int price = value.getPrice();
+                        String Menuid = value.getMenuid();
+                        String cal = value.getCalories();
+                        String popular = value.getPopular();
+                        String recommended = value.getRecommended();
+                        fire.setName(name);
+                        fire.setDescription(description);
+                        fire.setPrice(price);
+                        fire.setMenuid(Menuid);
+                        fire.setCalories(cal);
+                        fire.setPopular(value.getPopular());
+                        fire.setRecommended(value.getRecommended());
+                        if (value.getPopular().equals("yes"))
+                            list.add(fire);
+                        if (value.getRecommended().equals("yes"))
+                            list2.add(fire);
+                    }
                 }
 
                 onActivityOpen();
@@ -448,10 +462,15 @@ public class HomeActivity extends AppCompatActivity {
 
     public void onActivityOpen() {
         HomeFoodRecyclerAdapter recyclerAdapter = new HomeFoodRecyclerAdapter(list, HomeActivity.this);
+        HomeFoodRecyclerAdapter recyclerAdapter2 = new HomeFoodRecyclerAdapter(list2, HomeActivity.this);
         RecyclerView.LayoutManager recycleVariable = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager recycleVariable2 = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
         homeFoodRecycler.setLayoutManager(recycleVariable);
         homeFoodRecycler.setItemAnimator(new DefaultItemAnimator());
         homeFoodRecycler.setAdapter(recyclerAdapter);
+        homeFoodRecycler2.setLayoutManager(recycleVariable2);
+        homeFoodRecycler2.setItemAnimator(new DefaultItemAnimator());
+        homeFoodRecycler2.setAdapter(recyclerAdapter2);
     }
 
     @Override

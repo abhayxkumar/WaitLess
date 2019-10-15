@@ -47,7 +47,7 @@ public class MyOrdersActivity extends AppCompatActivity {
     CircularImageView nav_image;
     private DrawerLayout mDrawerLayout;
     private MenuItem item;
-    private ImageButton nav_drawer;
+    private ImageButton nav_drawer, buttonCart;
     private FirebaseAuth auth;
     public FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseDatabase mFirebaseDatabase;
@@ -117,6 +117,8 @@ public class MyOrdersActivity extends AppCompatActivity {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        buttonCart = findViewById(R.id.btn_cart);
 
         auth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -357,11 +359,11 @@ public class MyOrdersActivity extends AppCompatActivity {
                         cart_size = listNew.size();
                         itemCount = findViewById(R.id.badge_count);
                         itemCount.setText(String.valueOf(cart_size));
-//                        if (cart_size == 0) {
-//                            buttonCart.setVisibility(View.GONE);
-//                        } else {
-//                            buttonCart.setVisibility(View.VISIBLE);
-//                        }
+                        if (cart_size == 0) {
+                            buttonCart.setVisibility(View.GONE);
+                        } else {
+                            buttonCart.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     @Override
