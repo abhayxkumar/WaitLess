@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,8 @@ public class SupportActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private FirebaseAuth auth;
     private GoogleSignInClient mGoogleSignInClient;
+    LinearLayout linearLayoutfaq,linearLayoutContact;
+    TextView faqs,contactus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,26 +142,32 @@ public class SupportActivity extends AppCompatActivity {
                             case R.id.nav_home:
                                 Intent intent1 = new Intent("com.example.hetavdesai.pl2project.HomeActivity");
                                 startActivity(intent1);
+                                finish();
                                 break;
                             case R.id.nav_profile:
                                 Intent intent2 = new Intent("com.example.hetavdesai.pl2project.MainActivity");
                                 startActivity(intent2);
+                                finish();
                                 break;
                             case R.id.nav_game:
                                 Intent intent3 = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
                                 startActivity(intent3);
+                                finish();
                                 break;
                             case R.id.nav_full_menu:
                                 Intent intent4 = new Intent("com.example.hetavdesai.pl2project.FullMenuActivity");
                                 startActivity(intent4);
+                                finish();
                                 break;
                             case R.id.nav_book_table:
                                 Intent intent5 = new Intent("com.example.hetavdesai.pl2project.ReservationActivity");
                                 startActivity(intent5);
+                                finish();
                                 break;
                             case R.id.nav_my_res:
                                 Intent intent6 = new Intent("com.example.hetavdesai.pl2project.MyReservationsActivity");
                                 startActivity(intent6);
+                                finish();
                                 break;
                             case R.id.nav_my_order:
                                 Intent intent7 = new Intent("com.example.hetavdesai.pl2project.MyOrdersActivity");
@@ -167,6 +176,7 @@ public class SupportActivity extends AppCompatActivity {
                             case R.id.nav_invoice:
                                 Intent intent8 = new Intent("com.example.hetavdesai.pl2project.InvoiceActivity");
                                 startActivity(intent8);
+                                finish();
                                 break;
                             case R.id.nav_sign_out:
                                 signOut();
@@ -174,6 +184,7 @@ public class SupportActivity extends AppCompatActivity {
                             case R.id.nav_support:
                                 Intent intent9 = new Intent("com.example.hetavdesai.pl2project.SupportActivity");
                                 startActivity(intent9);
+                                finish();
                                 break;
                         }
                         return true;
@@ -184,6 +195,10 @@ public class SupportActivity extends AppCompatActivity {
         nav_username = (TextView)headerView.findViewById(R.id.nav_username);
         nav_image = (CircularImageView) headerView.findViewById(R.id.nav_image);
         nav_email = (TextView)headerView.findViewById(R.id.nav_email);
+        linearLayoutfaq = findViewById(R.id.linearlayout_faq);
+        linearLayoutContact = findViewById(R.id.linearlayout_contactus);
+        faqs = findViewById(R.id.faqs);
+        contactus = findViewById(R.id.contactus);
 
         nav_username.setText(acct.getDisplayName());
         nav_email.setText(acct.getEmail());
@@ -239,6 +254,30 @@ public class SupportActivity extends AppCompatActivity {
                 AssistanceClass assistanceClass = new AssistanceClass(assistanceId, String.valueOf(tableno));
                 databaseReference.child("Assistance").child(assistanceId).setValue(assistanceClass);
                 Toast.makeText(SupportActivity.this, "Assistance Requested", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        faqs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(linearLayoutfaq.getVisibility() == View.GONE){
+                    linearLayoutfaq.setVisibility(View.VISIBLE);
+                }
+                else if(linearLayoutfaq.getVisibility() == View.VISIBLE){
+                    linearLayoutfaq.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        contactus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(linearLayoutContact.getVisibility() == View.GONE){
+                    linearLayoutContact.setVisibility(View.VISIBLE);
+                }
+                else if(linearLayoutContact.getVisibility() == View.VISIBLE){
+                    linearLayoutContact.setVisibility(View.GONE);
+                }
             }
         });
 

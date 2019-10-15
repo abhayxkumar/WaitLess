@@ -400,7 +400,7 @@ public class HomeActivity extends AppCompatActivity {
                 assistanceId = UUID.randomUUID().toString();
                 AssistanceClass assistanceClass = new AssistanceClass(assistanceId, String.valueOf(tableno));
                 databaseReference.child("Assistance").child(assistanceId).setValue(assistanceClass);
-                Toast.makeText(HomeActivity.this, "Assistance Requested", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "Assistance Requested", Toast.LENGTH_LONG).show();
             }
         });
 

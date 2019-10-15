@@ -219,7 +219,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 PendingIntent.FLAG_ONE_SHOT);
 
         Notification notification = new NotificationCompat.Builder(this,MyFirebaseMessagingService.WAITLESS_ID)
-                .setSmallIcon(R.drawable.waitless_logoai)
+                .setSmallIcon(R.drawable.waitless_tp_logo)
                 .setContentTitle("WaitLess")
                 .setColor(Color.parseColor("#d81b60"))
                 .setContentText("Welcome to Waitless")

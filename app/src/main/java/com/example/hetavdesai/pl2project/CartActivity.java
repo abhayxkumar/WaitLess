@@ -469,7 +469,7 @@ public class CartActivity extends AppCompatActivity {
 
 
         Notification notification = new NotificationCompat.Builder(this,MyFirebaseMessagingService.WAITLESS_ID)
-                .setSmallIcon(R.drawable.waitless_logoai)
+                .setSmallIcon(R.drawable.waitless_tp_logo)
                 .setCustomContentView(collapsedView)
                 .setCustomBigContentView(expandedView)
                 .setAutoCancel(true)

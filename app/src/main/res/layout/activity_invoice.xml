@@ -106,8 +106,19 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/paytm"
                 android:layout_margin="10dp"
+                android:id="@+id/paycash"
+                android:background="@drawable/rounded_button"
+                android:textColor="@color/white"
+                android:text="Cash"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="PAYTM"
+                android:textColor="@color/white"
+                android:background="@drawable/rounded_button"
                 android:id="@+id/paytm"/>
 
         </LinearLayout>

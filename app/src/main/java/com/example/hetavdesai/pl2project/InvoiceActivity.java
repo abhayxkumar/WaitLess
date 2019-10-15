@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-
 import android.support.v4.widget.DrawerLayout;
-
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +16,6 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,11 +40,8 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
-
-import static com.example.hetavdesai.pl2project.CartClass.gtotal;
 
 
 public class InvoiceActivity extends AppCompatActivity {
@@ -87,7 +80,7 @@ public class InvoiceActivity extends AppCompatActivity {
     public static String name;
     //paytm
     public String order_id,custid;
-    Button paytm;
+    Button paytm,paycash;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -146,6 +139,7 @@ public class InvoiceActivity extends AppCompatActivity {
         mDatabaseReference = mFirebaseDatabase.getReference().child("users");
         mFirebaseUser = auth.getCurrentUser();
         paytm = findViewById(R.id.paytm);
+        paycash = findViewById(R.id.paycash);
         nav_drawer = (ImageButton) findViewById(R.id.navbtn);
         nav_drawer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,6 +225,13 @@ public class InvoiceActivity extends AppCompatActivity {
                 intent.putExtra("custid",custid);
                 startActivity(intent);
                 finish();
+            }
+        });
+        
+        paycash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Waiter will Approach you in a Minutes", Toast.LENGTH_LONG).show();
             }
         });
 

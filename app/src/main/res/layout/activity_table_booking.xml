@@ -333,6 +333,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
                                 android:hint="Enter OTP"
+                                android:textColorHint="?attr/lighttextcolor"
                                 android:inputType="number"
                                 android:maxLength="6" />
 
