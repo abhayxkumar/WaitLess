@@ -5,19 +5,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+
 import android.support.v4.widget.DrawerLayout;
+
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -37,8 +44,11 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
+
+import static com.example.hetavdesai.pl2project.CartClass.gtotal;
 
 
 public class InvoiceActivity extends AppCompatActivity {
@@ -71,14 +81,56 @@ public class InvoiceActivity extends AppCompatActivity {
     public MessagingMain messagingMain;
     public static TextView grandtotal;
 
+    private NavigationView navigationView;
+    private Menu menu;
+
     public static String name;
     //paytm
     public String order_id,custid;
     Button paytm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkAppTheme);
+        }
+        else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice);
+
+
+        nav_drawer = findViewById(R.id.navbtn);
+        navigationView = findViewById(R.id.nav_view);
+        menu = navigationView.getMenu();
+        navigationView.setItemIconTintList(null);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            nav_drawer.setBackgroundResource(R.drawable.menu_dark);
+            menu.findItem(R.id.nav_home).setIcon(R.drawable.home_dark);
+            menu.findItem(R.id.nav_game).setIcon(R.drawable.game_dark);
+            menu.findItem(R.id.nav_full_menu).setIcon(R.drawable.menu_dark);
+            menu.findItem(R.id.nav_book_table).setIcon(R.drawable.clock_dark);
+            menu.findItem(R.id.nav_my_res).setIcon(R.drawable.reserve_dark);
+            menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_dark);
+            menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_dark);
+            menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_dark);
+            menu.findItem(R.id.nav_support).setIcon(R.drawable.support_dark);
+
+        }
+        else {
+            nav_drawer.setBackgroundResource(R.drawable.menu_light);
+            menu.findItem(R.id.nav_home).setIcon(R.drawable.home_light);
+            menu.findItem(R.id.nav_game).setIcon(R.drawable.game_light);
+            menu.findItem(R.id.nav_full_menu).setIcon(R.drawable.menu_light);
+            menu.findItem(R.id.nav_book_table).setIcon(R.drawable.clock_light);
+            menu.findItem(R.id.nav_my_res).setIcon(R.drawable.reserve_light);
+            menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_light);
+            menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_light);
+            menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_light);
+            menu.findItem(R.id.nav_support).setIcon(R.drawable.support_light);
+        }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -242,6 +294,10 @@ public class InvoiceActivity extends AppCompatActivity {
                             case R.id.nav_sign_out:
                                 signOut();
                                 break;
+                            case R.id.nav_support:
+                                Intent intent9 = new Intent("com.example.hetavdesai.pl2project.SupportActivity");
+                                startActivity(intent9);
+                                break;
                         }
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
@@ -255,6 +311,7 @@ public class InvoiceActivity extends AppCompatActivity {
         nav_image = (CircularImageView) headerView.findViewById(R.id.nav_image);
         nav_email = (TextView)headerView.findViewById(R.id.nav_email);
 
+        acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         nav_username.setText(acct.getDisplayName());
         nav_email.setText(acct.getEmail());
         Picasso.get().load(acct.getPhotoUrl()).into(nav_image);
@@ -283,6 +340,58 @@ public class InvoiceActivity extends AppCompatActivity {
                 }
         );
 
+        recycle = findViewById(R.id.invoice_recycle);
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        email = acct.getEmail();
+        query = databaseReference.child("users").orderByChild("email").equalTo(email);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                    UserClass value = dataSnapshot1.getValue(UserClass.class);
+                    tableno = value.getTableno();
+                }
+
+                Query mDatabaseReference = mFirebaseDatabase.getReference().child("Table").child(String.valueOf(tableno)).orderByChild("userName");
+
+                mDatabaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // This method is called once with the initial value and again
+                        // whenever data at this location is updated.
+                        list = new ArrayList<>();
+                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                            UserNameClass value = dataSnapshot1.getValue(UserNameClass.class);
+                            UserNameClass fire = new UserNameClass();
+                            name = value.getUserName();
+                            fire.setUserName(name);
+                            list.add(fire);
+                        }
+
+                        onActivityOpen();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        // Failed to read value
+                        Log.w("Hello", "Failed to read value.", error.toException());
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 //        grandtotal.setText(String.valueOf(gtotal));
     }
 
@@ -302,7 +411,7 @@ public class InvoiceActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-      //  onActivityOpen();
+        onActivityOpen();
     }
 
     @Override

@@ -98,6 +98,7 @@ public class FullMenuActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_dark);
             menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_dark);
             menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_dark);
+            menu.findItem(R.id.nav_support).setIcon(R.drawable.support_dark);
 
         }
         else {
@@ -111,6 +112,7 @@ public class FullMenuActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_light);
             menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_light);
             menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_light);
+            menu.findItem(R.id.nav_support).setIcon(R.drawable.support_light);
         }
 
         fmRecyclerAdapter = new FMRecyclerAdapter(list, FullMenuActivity.this);
@@ -209,6 +211,10 @@ public class FullMenuActivity extends AppCompatActivity {
                                 break;
                             case R.id.nav_sign_out:
                                 signOut();
+                                break;
+                            case R.id.nav_support:
+                                Intent intent9 = new Intent("com.example.hetavdesai.pl2project.SupportActivity");
+                                startActivity(intent9);
                                 break;
                         }
                         // Add code here to update the UI based on the item selected

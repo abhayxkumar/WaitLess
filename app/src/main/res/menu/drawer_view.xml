@@ -41,9 +41,9 @@
             android:title="Invoice" />
 
         <item
-            android:id="@+id/nav_toggle"
-            android:icon="@drawable/ic_check_circle_36dp"
-            android:title="Dark Theme"/>
+            android:id="@+id/nav_support"
+            android:icon="@drawable/support_light"
+            android:title="Support"/>
 
 <!--        app:actionLayout="@layout/layout_switch"-->
 

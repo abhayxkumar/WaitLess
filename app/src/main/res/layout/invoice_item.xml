@@ -35,6 +35,8 @@
                     android:layout_alignParentStart="true"
                     android:text="User Name"
                     android:textSize="20dp"
+                    android:fontFamily="@font/montesrat"
+                    android:textStyle="bold"
                     android:textColor="?attr/textcolor"/>
 
                 <!--<TextView-->
@@ -85,6 +87,8 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:text="Item Name"
+                    android:fontFamily="@font/montesrat"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimary"/>
 
                 <TextView
@@ -93,6 +97,8 @@
                     android:layout_margin="5dp"
                     android:layout_weight="2"
                     android:text="Quantity"
+                    android:fontFamily="@font/montesrat"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimary"/>
 
                 <TextView
@@ -101,6 +107,8 @@
                     android:layout_margin="5dp"
                     android:layout_weight="3"
                     android:text="Price"
+                    android:fontFamily="@font/montesrat"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimary"/>
 
             </LinearLayout>
@@ -129,15 +137,33 @@
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:text="User Name's Total"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="6dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/montesrat"
+                    android:textSize="14dp"
+                    android:textColor="?attr/lighttextcolor"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:textStyle="bold"
+                    android:layout_marginRight="6dp"
+                    android:fontFamily="@font/montesrat"
+                    android:textSize="14dp"
+                    android:text="₹"
                     android:textColor="?attr/lighttextcolor"/>
 
                 <TextView
                     android:id="@+id/user_total"
-                    android:layout_width="50dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="16dp"
                     android:layout_weight="0"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montesrat"
+                    android:textSize="14dp"
                     android:text="1000"
                     android:textColor="?attr/lighttextcolor"/>
 

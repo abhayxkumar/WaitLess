@@ -157,7 +157,7 @@
                                     android:textColor="@color/colorPrimary"
                                     android:textStyle="italic"
                                     android:gravity="center"
-                                    android:text="Tap the Screen to keep the bird Alive\nRed - 25 points\nBlue - 10 points\nBlack - GameOver" />
+                                    android:text="Tap the Screen to keep the bird Alive\nRed - 15 points\nBlue - 10 points\nBlack - GameOver" />
 
                             </RelativeLayout>
 
@@ -220,6 +220,7 @@
                         <TextView
                             android:id="@+id/game_high_score2"
                             android:layout_width="wrap_content"
+                            android:textStyle="bold"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:textColor="?attr/textcolor"
@@ -315,6 +316,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
                             android:text="Highscore : 0"
+                            android:textStyle="bold"
                             android:textColor="?attr/textcolor"/>
 
                         <TextView

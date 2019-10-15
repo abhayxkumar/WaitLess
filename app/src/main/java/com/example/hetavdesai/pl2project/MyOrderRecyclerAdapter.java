@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import static com.example.hetavdesai.pl2project.CartActivity.tableno;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,6 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
     FoodItemActivity foodItemActivity;
     public OrderClass mylist;
     public OrderItemClass mylist1;
-    int tableno;
     RecyclerView recycle;
 
 
@@ -59,19 +59,17 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
         final int[] flagTransition = {0};
 
         recycle = holder.recyclerView;
-
-        holder.orderTotal.setText(String.valueOf(mylist.getOrderTotal()));
+//        holder.orderTotal.setText(String.valueOf(mylist.getOrderTotal()));
+        holder.orderTotal.setText("0");
         holder.orderId.setText(mylist.getOrderId());
         holder.orderTime.setText(mylist.getOrderTime());
         holder.tableNo.setText("Table " + String.valueOf(mylist.getTableNo()));
-        holder.tableno = String.valueOf(mylist.getTableNo());
         holder.orderIdToPass = mylist.getOrderId();
 
        // Toast.makeText(context,holder.orderIdToPass,Toast.LENGTH_SHORT).show();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        Query mDatabaseReference = firebaseDatabase.getReference().child("Order Items").child(String.valueOf(holder.tableno));
-
+        Query mDatabaseReference = firebaseDatabase.getReference().child("Order Items").child(String.valueOf(tableno));
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -92,7 +90,8 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
                         fire.setItemName(itemName);
                         fire.setItemPrice(itemPrice);
                         fire.setItemQuantity(itemQuantity);
-                        fire.setTableNo(tableNo);
+                        holder.orderTotal.setText(String.valueOf(Integer.parseInt(holder.orderTotal.getText().toString()) +  Integer.parseInt(itemPrice)*Integer.parseInt(itemQuantity)));
+                        fire.setTableNo(String.valueOf(tableno));
 
                         list1.add(fire);
                     }
@@ -149,7 +148,7 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
         TextView orderTotal, orderId,orderTime, tableNo;
         RecyclerView recyclerView;
         Button order_accept, order_decline;
-        String tableno, orderIdToPass;
+        String orderIdToPass;
         Button checkoutBtn;
 
 

@@ -153,7 +153,7 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                     UserNameClass userNameClass = new UserNameClass(acct.getDisplayName());
                     databaseReference.child("Table").child(intentData).child(acct.getId()).setValue(userNameClass);
 
-                    startActivity(new Intent(ScannedBarcodeActivity.this, CartActivity.class));
+                    startActivity(new Intent(ScannedBarcodeActivity.this, HomeActivity.class));
 
                     Toast.makeText(ScannedBarcodeActivity.this, "Added To Table No. " + intentData, Toast.LENGTH_SHORT).show();
                     //databaseReference1.child("Cart").child(acct.getId().substring(18)).removeValue();

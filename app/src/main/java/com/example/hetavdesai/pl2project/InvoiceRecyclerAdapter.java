@@ -31,6 +31,7 @@ import com.google.firebase.database.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import static com.example.hetavdesai.pl2project.CartActivity.tableno;
 
 import static com.example.hetavdesai.pl2project.InvoiceActivity.grandtotal;
 
@@ -45,7 +46,6 @@ public class InvoiceRecyclerAdapter extends RecyclerView.Adapter<InvoiceRecycler
     List<OrderItemClass> list1;
     Context context;
     FoodItemActivity foodItemActivity;
-    int tableno;
     RecyclerView recycle;
     public static int ptotal,grtotal;
 
@@ -67,6 +67,7 @@ public class InvoiceRecyclerAdapter extends RecyclerView.Adapter<InvoiceRecycler
 
     @Override
     public void onBindViewHolder(final MyHoder holder, int position) {
+        grtotal=0;
         mylist = list.get(position);
         final int[] flagTransition = {0};
 
@@ -97,7 +98,7 @@ public class InvoiceRecyclerAdapter extends RecyclerView.Adapter<InvoiceRecycler
             }
         });
 
-        Query mDatabaseReference = firebaseDatabase.getReference().child("Order Items Summary").child(String.valueOf(tableno)).child(holder.usernameAsString).orderByChild("username");
+        Query mDatabaseReference = firebaseDatabase.getReference().child("Order Items Copy").child(String.valueOf(tableno)).child(holder.usernameAsString).orderByChild("username");
 
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override

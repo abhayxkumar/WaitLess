@@ -108,7 +108,6 @@ public class ReservationActivity extends AppCompatActivity {
 
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             nav_drawer.setBackgroundResource(R.drawable.menu_dark);
-
             menu.findItem(R.id.nav_home).setIcon(R.drawable.home_dark);
             menu.findItem(R.id.nav_game).setIcon(R.drawable.game_dark);
             menu.findItem(R.id.nav_full_menu).setIcon(R.drawable.menu_dark);
@@ -117,11 +116,11 @@ public class ReservationActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_dark);
             menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_dark);
             menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_dark);
+            menu.findItem(R.id.nav_support).setIcon(R.drawable.support_dark);
 
         }
         else {
             nav_drawer.setBackgroundResource(R.drawable.menu_light);
-
             menu.findItem(R.id.nav_home).setIcon(R.drawable.home_light);
             menu.findItem(R.id.nav_game).setIcon(R.drawable.game_light);
             menu.findItem(R.id.nav_full_menu).setIcon(R.drawable.menu_light);
@@ -130,6 +129,7 @@ public class ReservationActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_my_order).setIcon(R.drawable.order_light);
             menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_light);
             menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_light);
+            menu.findItem(R.id.nav_support).setIcon(R.drawable.support_light);
         }
 
 
@@ -226,6 +226,10 @@ public class ReservationActivity extends AppCompatActivity {
                                 break;
                             case R.id.nav_sign_out:
                                 signOut();
+                                break;
+                            case R.id.nav_support:
+                                Intent intent9 = new Intent("com.example.hetavdesai.pl2project.SupportActivity");
+                                startActivity(intent9);
                                 break;
                         }
                         // Add code here to update the UI based on the item selected
