@@ -3,15 +3,13 @@ package com.example.hetavdesai.pl2project;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.nfc.cardemulation.CardEmulation;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.SwitchCompat;
 import android.text.TextUtils;
 import android.transition.TransitionManager;
@@ -20,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -33,7 +30,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.flags.Flag;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -191,34 +187,42 @@ public class ReservationActivity extends AppCompatActivity {
                             case R.id.nav_home:
                                 Intent intent1 = new Intent("com.example.hetavdesai.pl2project.HomeActivity");
                                 startActivity(intent1);
+                                finish();
                                 break;
                             case R.id.nav_profile:
                                 Intent intent2 = new Intent("com.example.hetavdesai.pl2project.MainActivity");
                                 startActivity(intent2);
+                                finish();
                                 break;
                             case R.id.nav_game:
                                 Intent intent3 = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
                                 startActivity(intent3);
+                                finish();
                                 break;
                             case R.id.nav_full_menu:
                                 Intent intent4 = new Intent("com.example.hetavdesai.pl2project.FullMenuActivity");
                                 startActivity(intent4);
+                                finish();
                                 break;
                             case R.id.nav_book_table:
                                 Intent intent5 = new Intent("com.example.hetavdesai.pl2project.ReservationActivity");
                                 startActivity(intent5);
+                                finish();
                                 break;
                             case R.id.nav_my_res:
                                 Intent intent6 = new Intent("com.example.hetavdesai.pl2project.MyReservationsActivity");
                                 startActivity(intent6);
+                                finish();
                                 break;
                             case R.id.nav_my_order:
                                 Intent intent7 = new Intent("com.example.hetavdesai.pl2project.MyOrdersActivity");
                                 startActivity(intent7);
+                                finish();
                                 break;
                             case R.id.nav_invoice:
                                 Intent intent8 = new Intent("com.example.hetavdesai.pl2project.InvoiceActivity");
                                 startActivity(intent8);
+                                finish();
                                 break;
                             case R.id.nav_sign_out:
                                 signOut();

@@ -119,30 +119,37 @@ public class UserProfileActivity extends AppCompatActivity {
                             case R.id.nav_home:
                                 Intent intent1 = new Intent("com.example.hetavdesai.pl2project.HomeActivity");
                                 startActivity(intent1);
+                                finish();
                                 break;
                             case R.id.nav_profile:
                                 Intent intent2 = new Intent("com.example.hetavdesai.pl2project.MainActivity");
                                 startActivity(intent2);
+                                finish();
                                 break;
                             case R.id.nav_game:
                                 Intent intent3 = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
                                 startActivity(intent3);
+                                finish();
                                 break;
                             case R.id.nav_full_menu:
                                 Intent intent4 = new Intent("com.example.hetavdesai.pl2project.FullMenuActivity");
                                 startActivity(intent4);
+                                finish();
                                 break;
                             case R.id.nav_book_table:
                                 Intent intent5 = new Intent("com.example.hetavdesai.pl2project.ReservationActivity");
                                 startActivity(intent5);
+                                finish();
                                 break;
                             case R.id.nav_my_res:
                                 Intent intent6 = new Intent("com.example.hetavdesai.pl2project.MyReservationsActivity");
                                 startActivity(intent6);
+                                finish();
                                 break;
                             case R.id.nav_my_order:
                                 Intent intent7 = new Intent("com.example.hetavdesai.pl2project.MyOrdersActivity");
                                 startActivity(intent7);
+                                finish();
                                 break;
                             case R.id.nav_sign_out:
                                 signOut();

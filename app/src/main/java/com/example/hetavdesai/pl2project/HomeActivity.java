@@ -30,6 +30,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -46,6 +47,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,6 +56,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 import static com.example.hetavdesai.pl2project.CartActivity.tableno;
 import static com.example.hetavdesai.pl2project.CartRecyclerAdapter.cart_size;
 
@@ -94,10 +97,9 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.DarkAppTheme);
-        }
-        else {
+        } else {
             setTheme(R.style.AppTheme);
         }
 
@@ -109,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
         menu = navigationView.getMenu();
         navigationView.setItemIconTintList(null);
 
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             nav_drawer.setBackgroundResource(R.drawable.menu_dark);
             buttonCart.setBackgroundResource(R.drawable.cart_dark);
             menu.findItem(R.id.nav_home).setIcon(R.drawable.home_dark);
@@ -121,8 +123,7 @@ public class HomeActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_dark);
             menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_dark);
 
-        }
-        else {
+        } else {
             nav_drawer.setBackgroundResource(R.drawable.menu_light);
             buttonCart.setBackgroundResource(R.drawable.cart_light);
             menu.findItem(R.id.nav_home).setIcon(R.drawable.home_light);
@@ -134,21 +135,17 @@ public class HomeActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_invoice).setIcon(R.drawable.invoice_light);
             menu.findItem(R.id.nav_sign_out).setIcon(R.drawable.power_light);
         }
-
         homeSwitch = findViewById(R.id.home_switch);
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             homeSwitch.setChecked(true);
         }
         homeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
+                if (isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                }
-                else
-                {
+                } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                 }
@@ -162,12 +159,10 @@ public class HomeActivity extends AppCompatActivity {
             buttonCart.setVisibility(View.VISIBLE);
         }
 
-            if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(HomeActivity.this, new
-                        String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
-            }
-        if (ContextCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(HomeActivity.this, new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS}, 101);
+        //Manifest.Permissions
+        if (ContextCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.READ_SMS) +
+                ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(HomeActivity.this, new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS,Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
         }
 
 
@@ -262,6 +257,7 @@ public class HomeActivity extends AppCompatActivity {
                             case R.id.nav_home:
                                 Intent intent1 = new Intent("com.example.hetavdesai.pl2project.HomeActivity");
                                 startActivity(intent1);
+                                finish();
                                 break;
                             case R.id.nav_profile:
                                 Intent intent2 = new Intent("com.example.hetavdesai.pl2project.MainActivity");

@@ -1,28 +1,23 @@
 package com.example.hetavdesai.pl2project;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -43,7 +38,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 import static com.example.hetavdesai.pl2project.CartActivity.tableno;
 import static com.example.hetavdesai.pl2project.CartRecyclerAdapter.cart_size;
@@ -182,34 +176,42 @@ public class FoodItemActivity extends AppCompatActivity {
                             case R.id.nav_home:
                                 Intent intent1 = new Intent("com.example.hetavdesai.pl2project.HomeActivity");
                                 startActivity(intent1);
+                                finish();
                                 break;
                             case R.id.nav_profile:
                                 Intent intent2 = new Intent("com.example.hetavdesai.pl2project.MainActivity");
                                 startActivity(intent2);
+                                finish();
                                 break;
                             case R.id.nav_game:
                                 Intent intent3 = new Intent("com.example.hetavdesai.pl2project.MiniGamesActivity");
                                 startActivity(intent3);
+                                finish();
                                 break;
                             case R.id.nav_full_menu:
                                 Intent intent4 = new Intent("com.example.hetavdesai.pl2project.FullMenuActivity");
                                 startActivity(intent4);
+                                finish();
                                 break;
                             case R.id.nav_book_table:
                                 Intent intent5 = new Intent("com.example.hetavdesai.pl2project.ReservationActivity");
                                 startActivity(intent5);
+                                finish();
                                 break;
                             case R.id.nav_my_res:
                                 Intent intent6 = new Intent("com.example.hetavdesai.pl2project.MyReservationsActivity");
                                 startActivity(intent6);
+                                finish();
                                 break;
                             case R.id.nav_my_order:
                                 Intent intent7 = new Intent("com.example.hetavdesai.pl2project.MyOrdersActivity");
                                 startActivity(intent7);
+                                finish();
                                 break;
                             case R.id.nav_invoice:
                                 Intent intent8 = new Intent("com.example.hetavdesai.pl2project.InvoiceActivity");
                                 startActivity(intent8);
+                                finish();
                                 break;
                             case R.id.nav_sign_out:
                                 signOut();
@@ -390,6 +392,17 @@ public class FoodItemActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         auth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        onActivityOpen();
     }
 
     @Override

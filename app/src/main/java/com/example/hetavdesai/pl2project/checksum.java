@@ -132,27 +132,36 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
 
     @Override
     public void networkNotAvailable() {
-
+        Intent intent = new Intent(checksum.this,InvoiceActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void clientAuthenticationFailed(String s) {
-
+        Intent intent = new Intent(checksum.this,InvoiceActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void someUIErrorOccurred(String s) {
         Log.e("checksum ", " ui fail respon  "+ s );
+        Intent intent = new Intent(checksum.this,InvoiceActivity.class);
+        startActivity(intent);
     }
+
 
     @Override
     public void onErrorLoadingWebPage(int i, String s, String s1) {
         Log.e("checksum ", " error loading pagerespon true "+ s + "  s1 " + s1);
+        Intent intent = new Intent(checksum.this,InvoiceActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void onBackPressedCancelTransaction() {
         Log.e("checksum ", " cancel call back respon  " );
+        Intent intent = new Intent(checksum.this,InvoiceActivity.class);
+        startActivity(intent);
     }
 
     @Override
